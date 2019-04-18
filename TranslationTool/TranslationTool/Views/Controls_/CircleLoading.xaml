@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="TranslationTool.Views.CircleLoading"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TranslationTool.Views"
+             x:Name="TheCircleLoading">
+    <UserControl.Resources>
+        <Storyboard x:Key="Storyboard.Circle" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part1" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.16"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part2" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.28"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part3" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.40"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part4" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.52"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part5" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.64"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part6" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.76"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part7" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.88"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Part8" Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1.00"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.76"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.64"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.52"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.28"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1.00"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <ControlTemplate x:Key="Template.Loading" TargetType="ContentControl">
+            <Grid x:Name="RootGrid" Width="24" Height="24">
+                <Path x:Name="Part1" Opacity="0.16" Fill="{Binding ForegroundBrush}" Data="M20.631728,19.631728C20.0459415,20.2175144,19.0961941,20.2175144,18.5104076,19.631728L16.3890873,17.5104076C15.8033009,16.9246212 15.8033009,15.9748737 16.3890873,15.3890873 16.9748737,14.8033009 17.9246212,14.8033009 18.5104076,15.3890873L20.631728,17.5104076C21.2175144,18.0961941,21.2175144,19.0459415,20.631728,19.631728z"/>
+                <Path x:Name="Part2" Opacity="0.28" Fill="{Binding ForegroundBrush}" Data="M12.5,23C11.6715729,23,11,22.3284271,11,21.5L11,18.5C11,17.6715729 11.6715729,17 12.5,17 13.3284271,17 14,17.6715729 14,18.5L14,21.5C14,22.3284271,13.3284271,23,12.5,23z"/>
+                <Path x:Name="Part3" Opacity="0.40" Fill="{Binding ForegroundBrush}" Data="M4.36827202,19.631728C3.78248558,19.0459415,3.78248558,18.0961941,4.36827202,17.5104076L6.48959236,15.3890873C7.0753788,14.8033009 8.02512627,14.8033009 8.6109127,15.3890873 9.19669914,15.9748737 9.19669914,16.9246212 8.6109127,17.5104076L6.48959236,19.631728C5.90380592,20.2175144,4.95405845,20.2175144,4.36827202,19.631728z"/>
+                <Path x:Name="Part4" Opacity="0.52" Fill="{Binding ForegroundBrush}" Data="M1,11.5C1,10.6715729,1.67157288,10,2.5,10L5.5,10C6.32842712,10 7,10.6715729 7,11.5 7,12.3284271 6.32842712,13 5.5,13L2.5,13C1.67157288,13,1,12.3284271,1,11.5z"/>
+                <Path x:Name="Part5" Opacity="0.64" Fill="{Binding ForegroundBrush}" Data="M4.36827202,3.36827202C4.95405845,2.78248558,5.90380592,2.78248558,6.48959236,3.36827202L8.6109127,5.48959236C9.19669914,6.0753788 9.19669914,7.02512627 8.6109127,7.6109127 8.02512627,8.19669914 7.0753788,8.19669914 6.48959236,7.6109127L4.36827202,5.48959236C3.78248558,4.90380592,3.78248558,3.95405845,4.36827202,3.36827202z"/>
+                <Path x:Name="Part6" Opacity="0.76" Fill="{Binding ForegroundBrush}" Data="M12.5,0C13.3284271,-1.52179594E-16,14,0.671572875,14,1.5L14,4.5C14,5.32842712 13.3284271,6 12.5,6 11.6715729,6 11,5.32842712 11,4.5L11,1.5C11,0.671572875,11.6715729,1.52179594E-16,12.5,0z"/>
+                <Path x:Name="Part7" Opacity="0.88" Fill="{Binding ForegroundBrush}" Data="M20.631728,3.36827202C21.2175144,3.95405845,21.2175144,4.90380592,20.631728,5.48959236L18.5104076,7.6109127C17.9246212,8.19669914 16.9748737,8.19669914 16.3890873,7.6109127 15.8033009,7.02512627 15.8033009,6.0753788 16.3890873,5.48959236L18.5104076,3.36827202C19.0961941,2.78248558,20.0459415,2.78248558,20.631728,3.36827202z"/>
+                <Path x:Name="Part8" Opacity="1.00" Fill="{Binding ForegroundBrush}" Data="M24,11.5C24,12.3284271,23.3284271,13,22.5,13L19.5,13C18.6715729,13 18,12.3284271 18,11.5 18,10.6715729 18.6715729,10 19.5,10L22.5,10C23.3284271,10,24,10.6715729,24,11.5z"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding LoadingSize}" Value="{x:Static controls:LoadingSize.Size32}">
+                    <Setter TargetName="RootGrid" Property="Width" Value="32"/>
+                    <Setter TargetName="RootGrid" Property="Height" Value="32"/>
+                    <Setter TargetName="Part1" Property="Data" Value="M21.6857653,24.5094805C20.9054582,23.7291734 20.9006139,22.4688898 21.6871078,21.6823959 22.4681564,20.9013473 23.7283175,20.8951784 24.5141924,21.6810534L27.3453046,24.5121656C28.1256118,25.2924727 28.130456,26.5527563 27.3439621,27.3392502 26.5629135,28.1202988 25.3027525,28.1264677 24.5168775,27.3405927L21.6857653,24.5094805z"/>
+                    <Setter TargetName="Part2" Property="Data" Value="M14,25.9981014C14,24.8945804 14.8877296,24 16,24 17.1045695,24 18,24.8867064 18,25.9981014L18,30.0018986C18,31.1054196 17.1122704,32 16,32 14.8954305,32 14,31.1132936 14,30.0018986L14,25.9981014z"/>
+                    <Setter TargetName="Part3" Property="Data" Value="M4.6626297,27.3647781C3.88158112,26.5837296,3.87541221,25.3235685,4.66128715,24.5376936L7.49239937,21.7065813C8.27270649,20.9262742 9.53299004,20.92143 10.3194839,21.7079239 11.1005325,22.4889725 11.1067014,23.7491335 10.3208265,24.5350085L7.48971428,27.3661207C6.70940716,28.1464278,5.44912361,28.151272,4.6626297,27.3647781z"/>
+                    <Setter TargetName="Part4" Property="Data" Value="M0,16C0,14.8954305,0.886706352,14,1.99810135,14L6.00189865,14C7.10541955,14 8,14.8877296 8,16 8,17.1045695 7.11329365,18 6.00189865,18L1.99810135,18C0.894580447,18,0,17.1122704,0,16z"/>
+                    <Setter TargetName="Part5" Property="Data" Value="M4.6857653,7.50948051C3.90545819,6.7291734 3.90061394,5.46888984 4.68710785,4.68239593 5.46815643,3.90134735 6.72831748,3.89517845 7.51419243,4.68105339L10.3453046,7.5121656C11.1256118,8.29247272 11.130456,9.55275627 10.3439621,10.3392502 9.56291351,11.1202988 8.30275246,11.1264677 7.51687752,10.3405927L4.6857653,7.50948051z"/>
+                    <Setter TargetName="Part6" Property="Data" Value="M14,1.99810135C14,0.894580447 14.8877296,0 16,0 17.1045695,0 18,0.886706352 18,1.99810135L18,6.00189865C18,7.10541955 17.1122704,8 16,8 14.8954305,8 14,7.11329365 14,6.00189865L14,1.99810135z"/>
+                    <Setter TargetName="Part7" Property="Data" Value="M21.6626297,10.3647781C20.8815811,9.58372955,20.8754122,8.3235685,21.6612872,7.53769356L24.4923994,4.70658134C25.2727065,3.92627423 26.53299,3.92142998 27.3194839,4.70792389 28.1005325,5.48897247 28.1067014,6.74913352 27.3208265,7.53500847L24.4897143,10.3661207C23.7094072,11.1464278,22.4491236,11.151272,21.6626297,10.3647781z"/>
+                    <Setter TargetName="Part8" Property="Data" Value="M24,16C24,14.8954305,24.8867064,14,25.9981014,14L30.0018986,14C31.1054196,14 32,14.8877296 32,16 32,17.1045695 31.1132936,18 30.0018986,18L25.9981014,18C24.8945804,18,24,17.1122704,24,16z"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Name="LoadingBeginStoryboard" Storyboard="{StaticResource Storyboard.Circle}"/>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActive}" Value="False">
+                    <DataTrigger.EnterActions>
+                        <StopStoryboard BeginStoryboardName="LoadingBeginStoryboard" />
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Viewbox>
+        <ContentControl x:Name="LoadingContent" Template="{StaticResource Template.Loading}"/>
+    </Viewbox>
+</UserControl>

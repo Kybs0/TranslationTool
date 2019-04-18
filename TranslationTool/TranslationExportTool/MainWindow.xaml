@@ -1,0 +1,110 @@
+﻿<Window x:Class="TranslationExportTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:translationExportTool="clr-namespace:TranslationExportTool"
+        x:Name="TheMainWindow" Title="生成数据库" Width="650" Height="400" Icon="Images/bitbug_favicon.ico"
+        BorderBrush="#D0D1D6" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" WindowStyle="None" Background="Transparent">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Color.Text.Normal">#666666</SolidColorBrush>
+        <StreamGeometry x:Key="Window.Minimize">M0,6 V8 H10 V6 Z</StreamGeometry>
+        <StreamGeometry x:Key="Window.Close">M3,8L3,9 2,9 2,10 0,10 0,8 1,8 1,7 2,7 2,6 3,6 3,4 2,4 2,3 1,3 1,2 0,2 0,0 2,0 2,1 3,1 3,2 4,2 4,3 6,3 6,2 7,2 7,1 8,1 8,0 10,0 10,2 9,2 9,3 8,3 8,4 7,4 7,6 8,6 8,7 9,7 9,8 10,8 10,10 8,10 8,9 7,9 7,8 6,8 6,7 4,7 4,8 3,8z</StreamGeometry>
+        <ControlTemplate x:Key="Button.Tempate" TargetType="Button">
+            <Grid x:Name="RootGrid" Background="Transparent">
+                <Border x:Name="CoverBorder" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+                <Path x:Name="IconPath" Fill="#808080" Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                      Data="{Binding Path=(translationExportTool:ControlHelper.Geometry),RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="CoverBorder" Property="Background" 
+                            Value="{Binding Path=(translationExportTool:ControlHelper.BackgroundHover), RelativeSource={RelativeSource TemplatedParent}}"/>
+                    <Setter TargetName="IconPath" Property="Fill" 
+                            Value="{Binding Path=(translationExportTool:ControlHelper.ForegroundHover), RelativeSource={RelativeSource TemplatedParent}}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="CoverBorder" Property="Background" 
+                            Value="{Binding Path=(translationExportTool:ControlHelper.BackgroundPressed), RelativeSource={RelativeSource TemplatedParent}}"/>
+                    <Setter TargetName="IconPath" Property="Fill" 
+                            Value="{Binding Path=(translationExportTool:ControlHelper.ForegroundPressed), RelativeSource={RelativeSource TemplatedParent}}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="IconPath" Property="Opacity" Value="0.4"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="Style.Button.Base" TargetType="Button">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Width" Value="36" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="5 2" />
+            <Setter Property="Template" Value="{StaticResource Button.Tempate}"/>
+        </Style>
+
+        <ControlTemplate x:Key="ImageContentButtonTemplate" TargetType="Button">
+            <Image Stretch="Fill" SnapsToDevicePixels="True" UseLayoutRounding="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                   VerticalAlignment="Center" 
+                   Source="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(translationExportTool:ControlHelper.ImageSource)}"/>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Border BorderBrush="Gainsboro" BorderThickness="1">
+        <Grid Background="White" ClipToBounds="True" WindowChrome.IsHitTestVisibleInChrome="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FFF0F0F0"  MouseLeftButtonDown="HeaderGrid_OnMouseLeftButtonDown">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="IconImage" Stretch="Fill" SnapsToDevicePixels="True" UseLayoutRounding="True" Width="16" Height="16"
+                       VerticalAlignment="Center" Margin="8 0 0 0" Source="Images/bitbug_favicon.ico"/>
+                    <TextBlock x:Name="TitleTextBlock" Margin="5 0" Text="{Binding ElementName=TheMainWindow,Path=Title}"
+                           Foreground="{StaticResource Color.Text.Normal}"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           WindowChrome.IsHitTestVisibleInChrome="False">
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <!-- 最小化按钮 -->
+                    <Button Name="MinimizeButton" Margin="6 0 0 0" Style="{StaticResource Style.Button.Base}"
+                        Click="MinimizeButton_OnClick" 
+                        translationExportTool:ControlHelper.Geometry="{StaticResource Window.Minimize}"
+                        translationExportTool:ControlHelper.BackgroundHover="#0D000000"
+                        translationExportTool:ControlHelper.BackgroundPressed="#14000000"
+                        translationExportTool:ControlHelper.ForegroundHover="#808080"
+                        translationExportTool:ControlHelper.ForegroundPressed="#808080"/>
+
+                    <!-- 关闭按钮 -->
+                    <Button Name="CloseButton" Style="{StaticResource Style.Button.Base}"
+                        Click="CloseButton_OnClick" 
+                        translationExportTool:ControlHelper.Geometry="{StaticResource Window.Close}"
+                        translationExportTool:ControlHelper.BackgroundHover="#D94C4C"
+                        translationExportTool:ControlHelper.BackgroundPressed="#B34747"
+                        translationExportTool:ControlHelper.ForegroundHover="#FFFFFF"
+                        translationExportTool:ControlHelper.ForegroundPressed="#99FFFFFF"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="10">
+                <Grid>
+                    <StackPanel Margin="30">
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <TextBlock Text="源数据库地址："  HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock x:Name="SourceDbTextBlock" Text="{Binding ElementName=TheMainWindow,Path=DbSourcePath}" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <TextBlock Text="输出数据库地址："  HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock x:Name="DestDbTextBlock" Text="{Binding ElementName=TheMainWindow,Path=DbOuputPath}" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+
+                        <Button x:Name="ExportButton" Content="导出" Click="ExportButton_OnClick" Background="Transparent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="26" Margin="0 20 0 0"/>
+                        <TextBlock x:Name="ProgressTextBlock" HorizontalAlignment="Center" Margin="0 20 0 0"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
