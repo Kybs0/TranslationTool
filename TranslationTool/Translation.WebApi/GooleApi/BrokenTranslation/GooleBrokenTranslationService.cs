@@ -12,7 +12,7 @@ namespace Translation.WebApi.GooleApi.BrokenTranslation
         {
             try
             {
-                var result = new GooleBrokenTranslationApi().Translate(queryText,"auto","auto");
+                var result = new GooleBrokenTranslationApi().GoogleTranslate(queryText,"auto","auto");
                 var convertedResult = Unicode2String(result);
                 return convertedResult;
             }

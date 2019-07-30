@@ -85,7 +85,7 @@ namespace TranslationTool.ViewModels
 
         public List<string> ApiTypeList { get; set; } = new List<string>()
         {
-            "金山","有道","百度"
+            "金山","有道","谷歌","百度"
         };
 
         private string _selectedApiType = string.Empty;

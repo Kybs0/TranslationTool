@@ -19,59 +19,39 @@ namespace Translation.WebApi.GooleApi.BrokenTranslation
         /// <param name="fromLanguage">自动检测：auto</param>
         /// <param name="toLanguage">中文：zh-CN，英文：en</param>
         /// <returns>翻译后文本</returns>
-        public string Translate(string text, string fromLanguage, string toLanguage)
+        public string GoogleTranslate(string text, string fromLanguage, string toLanguage)
         {
             CookieContainer cc = new CookieContainer();
-
-            string GoogleTransBaseUrl = "https://translate.google.com/";
-
-            var baseResultHtml = GetResultHtml(GoogleTransBaseUrl, cc, "");
-
+            string googleTransBaseUrl = "https://translate.google.com/";
+            var baseResultHtml = GetResultHtml(googleTransBaseUrl, cc, "");
             Regex re = new Regex(@"(?<=TKK=')(.*?)(?=')");
-
-            var TKK = re.Match(baseResultHtml).ToString();//在返回的HTML中正则匹配TKK的值
-
-            var jsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\goole.js");
-            var GetTkkJS = File.ReadAllText(jsFilePath);
-
-            var tk = ExecuteScript("tk(\"" + text + "\",\"" + TKK + "\")", GetTkkJS);
-
-            string googleTransUrl = "https://translate.google.com/translate_a/single?client=t&sl=" + fromLanguage + "&tl=" + toLanguage + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tk + "&q=" + HttpUtility.UrlEncode(text);
-
-            var ResultHtml = GetResultHtml(googleTransUrl, cc, "https://translate.google.com/");
-
-            dynamic TempResult = Newtonsoft.Json.JsonConvert.DeserializeObject(ResultHtml);
-
-            string ResultText = Convert.ToString(TempResult[0][0][0]);
-
-            return ResultText;
+            var tkkMatchedValue = re.Match(baseResultHtml).ToString();//在返回的HTML中正则匹配TKK的值
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var gooleJsPath = Path.Combine(baseDirectory, @"Resources\goole.js");
+            var jsText = File.ReadAllText(gooleJsPath);
+            var tkValue = ExecuteScript("tk(\"" + text + "\",\"" + tkkMatchedValue + "\")", jsText);
+            string googleTransUrl = $"{googleTransBaseUrl}translate_a/single?client=t&sl={fromLanguage}&tl={toLanguage}&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk={tkValue}&q={HttpUtility.UrlEncode(text)}";
+            var resultHtml = GetResultHtml(googleTransUrl, cc, "https://translate.google.com/");
+            dynamic deserializeObject = Newtonsoft.Json.JsonConvert.DeserializeObject(resultHtml);
+            string resultText = Convert.ToString(deserializeObject[0][0][0]);
+            return resultText;
         }
 
         public string GetResultHtml(string url, CookieContainer cookie, string referer)
         {
             var html = "";
-
             var webRequest = WebRequest.Create(url) as HttpWebRequest;
-
             webRequest.Method = "GET";
-
             webRequest.CookieContainer = cookie;
-
             webRequest.Referer = referer;
-
             webRequest.Timeout = 20000;
-
             webRequest.Headers.Add("X-Requested-With:XMLHttpRequest");
-
             webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
-
             webRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36";
-
             using (var webResponse = (HttpWebResponse)webRequest.GetResponse())
             {
                 using (var reader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8))
                 {
-
                     html = reader.ReadToEnd();
                     reader.Close();
                     webResponse.Close();
