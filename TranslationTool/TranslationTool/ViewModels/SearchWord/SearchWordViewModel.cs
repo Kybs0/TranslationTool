@@ -158,7 +158,7 @@ namespace TranslationTool.ViewModels
             foreach (var resultSynonym in resultSynonyms)
             {
                 synonyms += $"{index++}. {resultSynonym.Translation}\r\n";
-                synonyms += $"{string.Join(";", resultSynonym.Synonyms)}\r\n";
+                synonyms += $"{string.Join("; ", resultSynonym.Synonyms)}\r\n";
             }
             Synonyms = synonyms;
         }
@@ -180,7 +180,7 @@ namespace TranslationTool.ViewModels
             var baseInfo = string.Empty;
             foreach (var wordDataTranslation in wordData.Translations)
             {
-                baseInfo += $"{wordDataTranslation.WordType}{ wordDataTranslation.Translation}\r\n";
+                baseInfo += $"{wordDataTranslation.WordType} { wordDataTranslation.Translation}\r\n";
             }
 
             Translation = baseInfo;
