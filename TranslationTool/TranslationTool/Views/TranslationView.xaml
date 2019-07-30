@@ -19,13 +19,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid>
             <ComboBox x:Name="ApiComboBox" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#666666" Background="#F4F4F4"
                       SelectionChanged="ApiComboBox_OnSelectionChanged" MinWidth="70" Visibility="Visible" Style="{StaticResource Style.ComboBox}"
                       SelectedValue="{Binding SelectedApiType}" ItemsSource="{Binding ApiTypeList}"/>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 30 0 0">
                 <TextBox x:Name="SearchingTextBox" Padding="6" FontSize="16" KeyDown="SearchingTextBox_OnKeyDown" TextWrapping="Wrap"
+                         AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" 
                          Width="420" Height="140" MaxHeight="200" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="Transparent"
                          Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#666666"/>
                 <Button x:Name="SearchButton" Content="搜索" Command="{Binding SearchCommand}" 
@@ -34,6 +34,6 @@
             </StackPanel>
         </Grid>
         <TextBox Grid.Row="1" Text="{Binding Translation}" Margin="0 30 0 0" TextWrapping="Wrap" Foreground="#666666"
-                 Height="180" Padding="6" FontSize="16"/>
+                 Height="180" Padding="6" FontSize="16" AcceptsReturn="True" AcceptsTab="True"/>
     </Grid>
 </UserControl>

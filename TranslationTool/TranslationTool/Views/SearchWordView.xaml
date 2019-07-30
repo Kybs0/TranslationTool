@@ -188,7 +188,7 @@
                     <TextBox x:Name="SearchingTextBox" Padding="4,4" FontSize="16" KeyDown="SearchingTextBox_OnKeyDown" TextAlignment="Left"
                              MinWidth="200" MaxWidth="460" MaxHeight="250" HorizontalAlignment="Center"  VerticalAlignment="Center" FocusVisualStyle="{x:Null}"
                              Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#464646"
-                             InputMethod.PreferredImeConversionMode="Alphanumeric"/>
+                             InputMethod.PreferredImeConversionMode="Alphanumeric" SpellCheck.IsEnabled="True" />
                     <TextBlock Text="搜索单词" Margin="8,0" FontSize="14" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="True"
                                PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"
                                Visibility="{Binding ElementName=SearchingTextBox, Path= Text,Converter={StaticResource NullOrEmptyToVisibilityReverseConverter}}"/>
