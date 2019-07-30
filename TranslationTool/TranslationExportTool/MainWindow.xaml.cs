@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Translation.Api;
-using Translation.Business;
+using TranslationExportTool;
 using Translation.Util;
 using Translation.WebApi.KinsoftApi;
 using Translation.WebApi.YouDaoApi;

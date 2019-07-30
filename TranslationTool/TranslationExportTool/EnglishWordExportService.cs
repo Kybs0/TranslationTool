@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Translation.Api;
-using Translation.Business;
+using TranslationExportTool;
 using Translation.Util;
 
 namespace TranslationExportTool

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
 
-namespace Translation.Business
+namespace TranslationExportTool
 {
     public class EnglishWordSqliteHelper
     {

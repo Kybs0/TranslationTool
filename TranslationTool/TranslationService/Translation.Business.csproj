@@ -90,9 +90,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbHelper\DbCache.cs" />
-    <Compile Include="DbHelper\EnglishWordSqliteHelper.cs" />
-    <Compile Include="DbHelper\EnglishWordDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ConfigrationHelper.cs" />
     <Compile Include="Util\CustomPathUtil.cs" />

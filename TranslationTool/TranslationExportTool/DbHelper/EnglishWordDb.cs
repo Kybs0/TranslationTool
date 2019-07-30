@@ -3,7 +3,7 @@ using LinqToDB.DataProvider;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.Mapping;
 
-namespace Translation.Business
+namespace TranslationExportTool
 {
     public partial class EnglishWordDb : DataConnection
     {

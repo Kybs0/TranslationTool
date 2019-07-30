@@ -38,5 +38,10 @@ namespace TranslationTool.Views
         {
             (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
         }
+
+        private void SearchingHintTextBlock_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SearchingTextBox.Focus();
+        }
     }
 }

@@ -113,6 +113,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlHelper.cs" />
+    <Compile Include="DbHelper\DbCache.cs" />
+    <Compile Include="DbHelper\EnglishWordDb.cs" />
+    <Compile Include="DbHelper\EnglishWordSqliteHelper.cs" />
     <Compile Include="EnglishWordExportService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
