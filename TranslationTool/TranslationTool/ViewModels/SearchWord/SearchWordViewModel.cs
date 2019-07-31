@@ -169,8 +169,8 @@ namespace TranslationTool.ViewModels
             int index = 1;
             foreach (var sentenceInfo in resultPhrases)
             {
-                _phrases += $"{index++}. {sentenceInfo.Phrase}\r\n";
-                _phrases += $"{sentenceInfo.PhraseTranslation}\r\n";
+                _phrases += $"{index++}. {sentenceInfo.Phrase?.Replace("\t", string.Empty)}\r\n";
+                _phrases += $"{sentenceInfo.PhraseTranslation?.Replace("\t", string.Empty)}\r\n";
             }
             Phrases = _phrases;
         }
