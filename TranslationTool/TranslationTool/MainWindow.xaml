@@ -45,9 +45,14 @@
         </Style>
 
         <ControlTemplate x:Key="ImageContentButtonTemplate" TargetType="Button">
-            <Image Stretch="Fill" SnapsToDevicePixels="True" UseLayoutRounding="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
-                   VerticalAlignment="Center" 
+            <Image x:Name="ContentImage" Stretch="Fill" SnapsToDevicePixels="True" UseLayoutRounding="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                   VerticalAlignment="Center" Opacity="0.9"
                    Source="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(helper:ControlHelper.ImageSource)}"/>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ContentImage" Property="Opacity" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
         </ControlTemplate>
 
     </Window.Resources>
@@ -69,6 +74,10 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <!--设置-->
+                    <Button x:Name="AboutButton" Style="{StaticResource Style.Button.Image.Small}" Visibility="Visible"
+                            helper:ControlHelper.Image="Images/guanyu.png" ToolTip="在线单词查询及翻译&#13;copyright @ dotnet-campus with Winter"
+                            VerticalAlignment="Center"></Button>
                     <!-- 最小化按钮 -->
                     <Button Name="MinimizeButton" Margin="6 0 0 0" Style="{StaticResource Style.Button.Base}"
                         Click="MinimizeButton_OnClick" 
@@ -93,11 +102,11 @@
                 <views:SearchWordView x:Name="TheSearchWordView" Visibility="Visible"/>
                 <views:TranslationView x:Name="TheTranslationView" Visibility="Collapsed"/>
                 <Button x:Name="ShowTranslationViewButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="32" Height="32"
-                        ToolTip="转到翻译页面" Click="ShowTranslationViewButton_OnClick"
+                        Click="ShowTranslationViewButton_OnClick"
                         Visibility="{Binding ElementName=TheSearchWordView,Path=Visibility}" 
                         Template="{StaticResource ImageContentButtonTemplate}" helper:ControlHelper.ImageSource="../Images/translate.png"/>
                 <Button x:Name="BackToWordViewButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="24" Height="24"
-                        ToolTip="转到单词页面" Click="BackToWordViewButton_OnClick"
+                        Click="BackToWordViewButton_OnClick"
                         Visibility="{Binding ElementName=TheTranslationView,Path=Visibility}" 
                         Template="{StaticResource ImageContentButtonTemplate}" helper:ControlHelper.ImageSource="../Images/beidanci (1).png" />
             </Grid>

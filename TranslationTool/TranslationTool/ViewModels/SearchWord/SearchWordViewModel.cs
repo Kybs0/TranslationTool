@@ -256,7 +256,7 @@ namespace TranslationTool.ViewModels
         /// <summary>
         /// 英式发音
         /// </summary>
-        private PronounceModel _ukPronounce;
+        private PronounceModel _ukPronounce = new PronounceModel();
         public PronounceModel UkPronounce
         {
             get => _ukPronounce;
@@ -266,7 +266,7 @@ namespace TranslationTool.ViewModels
                 OnPropertyChanged();
             }
         }
-        private PronounceModel _usPronounce;
+        private PronounceModel _usPronounce = new PronounceModel();
         /// <summary>
         /// 美式发音
         /// </summary>

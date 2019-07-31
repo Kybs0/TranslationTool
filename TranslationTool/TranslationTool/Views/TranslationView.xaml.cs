@@ -25,10 +25,10 @@ namespace TranslationTool.Views
         {
             InitializeComponent();
         }
-
-        private void SearchingTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        private void SearchingTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            var text = SearchingTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(text)&&text.Contains("\r\n"))
             {
                 (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
             }
@@ -43,5 +43,7 @@ namespace TranslationTool.Views
         {
             SearchingTextBox.Focus();
         }
+
+
     }
 }

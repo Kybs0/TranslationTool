@@ -10,5 +10,6 @@ namespace Translation.Business.Util
     {
         public static string LastViewKey = "LastView";
         public const string UserLayoutSection = "UserLayout";
+        public static string LastWorkTab = "LastWorkTab";
     }
 }

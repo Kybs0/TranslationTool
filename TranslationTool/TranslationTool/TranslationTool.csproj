@@ -234,5 +234,11 @@
   <ItemGroup>
     <Resource Include="bitbug_favicon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\guanyu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\setting.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

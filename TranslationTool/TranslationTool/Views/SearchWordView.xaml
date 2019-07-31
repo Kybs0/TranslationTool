@@ -102,6 +102,7 @@
             </Setter>
         </Style>
         <Style x:Key="Style.TabItem" TargetType="TabItem">
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TabItem_OnPreviewMouseLeftButtonDown"></EventSetter>
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -181,7 +182,7 @@
         <Grid>
             <ComboBox x:Name="ApiComboBox" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 35 0 0"
                       Foreground="#666666" Background="#F4F4F4" HorizontalContentAlignment="Stretch"
-                      SelectionChanged="ApiComboBox_OnSelectionChanged" MinWidth="70" Visibility="Visible" Style="{StaticResource Style.ComboBox}"
+                      SelectionChanged="ApiComboBox_OnSelectionChanged" MinWidth="70" Visibility="Collapsed" Style="{StaticResource Style.ComboBox}"
                       SelectedValue="{Binding SelectedApiType}" ItemsSource="{Binding ApiTypeList}"/>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" >
                 <Grid Cursor="IBeam">
@@ -243,25 +244,25 @@
                             <Setter Property="FontSize" Value="16"></Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="基本释义" MinWidth="122" IsSelected="True" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SemanticTabItem" Header="基本释义" MinWidth="122" IsSelected="True" Style="{StaticResource Style.TabItem}">
                         <ScrollViewer HorizontalAlignment="Stretch" Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Translation, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="6" 
                                  Visibility="{Binding Translation,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="同根扩展" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="CognateTabItem" Header="同根扩展" MinWidth="122" Style="{StaticResource Style.TabItem}">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Cognates, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="6"
                                  Visibility="{Binding Cognates,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="词组" MinWidth="122"  Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="PhraseTabItem" Header="词组" MinWidth="122"  Style="{StaticResource Style.TabItem}">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Phrases, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="6"
                                  Visibility="{Binding Phrases,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="扩展词组" MinWidth="122" Visibility="Collapsed" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="PhraseExtensionTabItem" Header="扩展词组" MinWidth="122" Visibility="Collapsed" Style="{StaticResource Style.TabItem}">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" Margin="6">
                             <ItemsControl>
                                 <ItemsControl.ItemTemplate>
@@ -272,7 +273,7 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="例句" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SentenceTabItem" Header="例句" MinWidth="122" Style="{StaticResource Style.TabItem}">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <ItemsControl ItemsSource="{Binding Sentences,Mode=OneWay}" Margin="6">
                                 <ItemsControl.ItemTemplate>
@@ -291,7 +292,7 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="近义词" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SynonymTabItem" Header="近义词" MinWidth="122" Style="{StaticResource Style.TabItem}">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Synonyms, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="6"
                                  Visibility="{Binding Synonyms,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>

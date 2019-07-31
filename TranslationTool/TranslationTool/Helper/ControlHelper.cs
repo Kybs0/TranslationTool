@@ -122,5 +122,26 @@ namespace TranslationTool.Helper
         }
         #endregion
 
+        #region 控件内部图片源 Image
+
+        public static ImageSource GetImage(DependencyObject obj)
+        {
+            return (ImageSource)obj.GetValue(ImageProperty);
+        }
+
+        public static void SetImage(DependencyObject obj, ImageSource value)
+        {
+            obj.SetValue(ImageProperty, value);
+        }
+
+        /// <summary>
+        /// 附加属性，用于设定控件的附加图片
+        /// </summary>
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.RegisterAttached("Image", typeof(ImageSource), typeof(ControlHelper),
+                new PropertyMetadata(null));
+
+        #endregion
+
     }
 }

@@ -81,6 +81,6 @@ namespace TranslationTool
         }
 
         #endregion
-    }
 
+    }
 }

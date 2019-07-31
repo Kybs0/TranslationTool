@@ -25,11 +25,12 @@
                       SelectedValue="{Binding SelectedApiType}" ItemsSource="{Binding ApiTypeList}"/>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 30 0 0">
                 <Grid Width="420" Height="140" MaxHeight="200" HorizontalAlignment="Center"  VerticalAlignment="Center" Cursor="IBeam">
-                    <TextBox x:Name="SearchingTextBox" Padding="6" FontSize="16" KeyDown="SearchingTextBox_OnKeyDown" TextWrapping="Wrap"
+                    <TextBox x:Name="SearchingTextBox" Padding="6" FontSize="16" TextWrapping="Wrap"
                          AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" 
                          Background="Transparent"
-                         Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#666666"/>
-                    <TextBlock Text="输入文本" Margin="10" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#666666"
+                         TextChanged="SearchingTextBox_OnTextChanged"/>
+                    <TextBlock Text="输入文本后按Enter键查询" Margin="10" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
                                Foreground="LightGray" IsHitTestVisible="True"
                                PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"
                                Visibility="{Binding ElementName=SearchingTextBox, Path= Text,Converter={StaticResource NullOrEmptyToVisibilityReverseConverter}}"/>
