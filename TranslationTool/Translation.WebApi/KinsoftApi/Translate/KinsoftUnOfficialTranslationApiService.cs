@@ -22,7 +22,7 @@ namespace Translation.WebApi.KinsoftApi.Translate
                 if (string.IsNullOrEmpty(translation))
                 {
                     var list = youDaoResponse.TranslationContent?.WordMeanings??new List<string>();
-                    translation = string.Join(";", list);
+                    translation = string.Join(";\r\n", list);
                 }
                 return translation;
             }
