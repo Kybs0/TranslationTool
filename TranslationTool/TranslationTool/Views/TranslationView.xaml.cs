@@ -28,7 +28,8 @@ namespace TranslationTool.Views
         private void SearchingTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var text = SearchingTextBox.Text;
-            if (!string.IsNullOrWhiteSpace(text)&&text.Contains("\r\n"))
+            //最后Enter触发请求
+            if (!string.IsNullOrWhiteSpace(text) && text.EndsWith("\r\n") && SearchingTextBox.CaretIndex == text.Length)
             {
                 (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
             }
