@@ -25,16 +25,6 @@ namespace TranslationTool.Views
         {
             InitializeComponent();
         }
-        private void SearchingTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            var text = SearchingTextBox.Text;
-            //最后Enter触发请求
-            if (!string.IsNullOrWhiteSpace(text) && text.EndsWith("\r\n") && SearchingTextBox.CaretIndex == text.Length)
-            {
-                (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
-            }
-        }
-
         private void ApiComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
@@ -45,6 +35,18 @@ namespace TranslationTool.Views
             SearchingTextBox.Focus();
         }
 
-
+        private void SearchingTextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var text = SearchingTextBox.Text;
+            if (e.Key==Key.Enter)
+            {
+                var replacedText = text.Substring(SearchingTextBox.CaretIndex, text.Length - SearchingTextBox.CaretIndex).Replace("\r\n", string.Empty);
+                //最后Enter触发请求
+                if (string.IsNullOrWhiteSpace(replacedText))
+                {
+                    (this.DataContext as TranslationViewModel)?.SearchCommand.Execute(null);
+                }
+            }
+        }
     }
 }

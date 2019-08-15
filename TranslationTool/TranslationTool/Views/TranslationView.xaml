@@ -29,7 +29,7 @@
                          AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" 
                          Background="Transparent"
                          Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#666666"
-                         TextChanged="SearchingTextBox_OnTextChanged"/>
+                         PreviewKeyDown="SearchingTextBox_OnPreviewKeyDown"/>
                     <TextBlock Text="输入文本后按Enter键查询" Margin="10" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
                                Foreground="LightGray" IsHitTestVisible="True"
                                PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"
