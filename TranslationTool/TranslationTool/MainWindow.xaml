@@ -75,7 +75,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <!--设置-->
-                    <Button x:Name="AboutButton" Style="{StaticResource Style.Button.Image.Small}" Visibility="Visible"
+                    <Button x:Name="AboutButton" Style="{StaticResource Style.Button.Image.Small}" Visibility="Collapsed"
                             helper:ControlHelper.Image="Images/guanyu.png" ToolTip="在线单词查询及翻译&#13;copyright @ dotnet-campus&#13;by Winter"
                             VerticalAlignment="Center"></Button>
                     <!-- 最小化按钮 -->

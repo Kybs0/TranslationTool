@@ -59,7 +59,7 @@ namespace TranslationTool
             this._notifyIcon = new NotifyIcon();
             this._notifyIcon.BalloonTipText = "翻译小工具";
             this._notifyIcon.ShowBalloonTip(2000);
-            this._notifyIcon.Text = "集成金山、有道非官方数据的翻译工具";
+            this._notifyIcon.Text = "在线单词查询及翻译\r\ncopyright @ Winter";
             this._notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
             this._notifyIcon.Visible = true;
             //打开菜单项
