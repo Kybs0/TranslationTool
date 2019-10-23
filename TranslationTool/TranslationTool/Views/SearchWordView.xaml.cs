@@ -74,17 +74,37 @@ namespace TranslationTool.Views
             {
                 return;
             }
+            SaveFile(pronounceUrl, (this.DataContext as SearchWordViewModel).CurrentWord);
+        }
 
+        private void SaveFile(string pronounceUrl, string saveFileName)
+        {
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.OverwritePrompt = true;
             var extension = Path.GetExtension(pronounceUrl);
-            saveFileDialog.FileName = (this.DataContext as SearchWordViewModel).CurrentWord + extension;
+            saveFileDialog.FileName = saveFileName + extension;
             saveFileDialog.Filter = $"音频文件(*{extension})|*{extension}";
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (saveFileDialog.ShowDialog(Window.GetWindow(this)) == true)
             {
                 var fileName = saveFileDialog.FileName;
                 File.Copy(pronounceUrl, fileName, true);
+            }
+        }
+
+        private void DownloadSentenceButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.DataContext is SentenceModel sentenceModel)
+            {
+                if (string.IsNullOrEmpty(sentenceModel.EnglishSentenceUri) || !File.Exists(sentenceModel.EnglishSentenceUri))
+                {
+                    return;
+                }
+
+                var sentence = sentenceModel.EnglishSentence.Length > 3
+                    ? sentenceModel.EnglishSentence.Substring(3, sentenceModel.EnglishSentence.Length - 3)
+                    : sentenceModel.EnglishSentence;
+                SaveFile(sentenceModel.EnglishSentenceUri, sentence);
             }
         }
     }
