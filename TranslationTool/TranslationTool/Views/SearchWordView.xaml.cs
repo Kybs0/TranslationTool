@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Win32;
 using Translation.Business.Util;
 using TranslationTool.ViewModels;
 
@@ -57,6 +60,31 @@ namespace TranslationTool.Views
             if (sender is TabItem item)
             {
                 IniFileHelper.IniWriteValue(CustomUtils.UserLayoutSection, CustomUtils.LastWorkTab, item.Header.ToString());
+            }
+        }
+        /// <summary>
+        /// 下载音频
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DownloadAudioButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var pronounceUrl = (sender as MenuItem).DataContext as string;
+            if (string.IsNullOrEmpty(pronounceUrl) || !File.Exists(pronounceUrl))
+            {
+                return;
+            }
+
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.OverwritePrompt = true;
+            var extension = Path.GetExtension(pronounceUrl);
+            saveFileDialog.FileName = (this.DataContext as SearchWordViewModel).CurrentWord + extension;
+            saveFileDialog.Filter = $"音频文件(*{extension})|*{extension}";
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (saveFileDialog.ShowDialog(Window.GetWindow(this)) == true)
+            {
+                var fileName = saveFileDialog.FileName;
+                File.Copy(pronounceUrl, fileName, true);
             }
         }
     }

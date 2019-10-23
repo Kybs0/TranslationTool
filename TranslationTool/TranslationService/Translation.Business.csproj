@@ -95,7 +95,6 @@
     <Compile Include="Util\CustomPathUtil.cs" />
     <Compile Include="Util\CustomUtils.cs" />
     <Compile Include="Util\IniFileHelper.cs" />
-    <Compile Include="Util\WebResourceDownloadHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Translation.Api\Translation.Api.csproj">

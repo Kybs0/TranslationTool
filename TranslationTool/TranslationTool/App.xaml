@@ -93,6 +93,29 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <DrawingImage x:Key="Image.Download">
+            <DrawingImage.Drawing>
+                <GeometryDrawing Brush="#FF1296DB">
+                    <GeometryDrawing.Geometry>
+                        <StreamGeometry>M16,14L16,15 1,15 0,15 0,9 2,9 2,13 14,13 14,9 16,9 16,14z M14,5L9,5 9,0 7,0 7,5 2,5 8,10 14,5z M0,0 M16,16</StreamGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <ControlTemplate x:Key="MenuItem.Download" TargetType="MenuItem">
+            <Grid x:Name="RootGrid">
+                <StackPanel Orientation="Horizontal" Margin="6">
+                    <Image Source="{StaticResource Image.Download}" Stretch="Uniform" Width="16" Height="16" VerticalAlignment="Center"></Image>
+                    <TextBlock Text="{TemplateBinding Header}" Margin="12 0"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="RootGrid" Property="Background" Value="#FABCD9AD"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
         <Style x:Key="Style.ComboBox" TargetType="{x:Type ComboBox}">
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="OverridesDefaultStyle" Value="True" />
