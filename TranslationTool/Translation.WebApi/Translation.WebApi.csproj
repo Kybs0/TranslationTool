@@ -126,12 +126,8 @@
     <Compile Include="WebRequestHelper\WebRequestTransformHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\baidu.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\goole.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\baidu.js" />
+    <None Include="Resources\goole.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Translation.Api\Translation.Api.csproj">

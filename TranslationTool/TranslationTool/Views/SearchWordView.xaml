@@ -106,6 +106,7 @@
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Background" Value="{StaticResource TabMenuBackground}"></Setter>
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Template">
                 <Setter.Value>

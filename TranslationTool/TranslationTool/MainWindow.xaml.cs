@@ -18,7 +18,6 @@ namespace TranslationTool
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -30,29 +29,39 @@ namespace TranslationTool
             var appConfig = IniFileHelper.IniReadValue(CustomUtils.UserLayoutSection, CustomUtils.LastViewKey);
             if (appConfig == nameof(SearchWordView))
             {
-                TheSearchWordView.Visibility = Visibility.Visible;
-                TheTranslationView.Visibility = Visibility.Collapsed;
+                ShowWordView();
             }
             else if (appConfig == nameof(TranslationView))
             {
-                TheSearchWordView.Visibility = Visibility.Collapsed;
-                TheTranslationView.Visibility = Visibility.Visible;
+                ShowTranslationView();
             }
+        }
+
+        private void ShowTranslationView()
+        {
+            TheSearchWordView.Visibility = Visibility.Collapsed;
+            TheTranslationView.Visibility = Visibility.Visible;
+            this.Title = "翻译";
+        }
+
+        private void ShowWordView()
+        {
+            TheSearchWordView.Visibility = Visibility.Visible;
+            TheTranslationView.Visibility = Visibility.Collapsed;
+            this.Title = "单词";
         }
 
         private const double SlideTime = 300;
         private void ShowTranslationViewButton_OnClick(object sender, RoutedEventArgs e)
         {
             IniFileHelper.IniWriteValue(CustomUtils.UserLayoutSection, CustomUtils.LastViewKey, nameof(TranslationView));
-            TheSearchWordView.Visibility = Visibility.Collapsed;
-            TheTranslationView.Visibility = Visibility.Visible;
+            ShowTranslationView();
         }
 
         private void BackToWordViewButton_OnClick(object sender, RoutedEventArgs e)
         {
             IniFileHelper.IniWriteValue(CustomUtils.UserLayoutSection, CustomUtils.LastViewKey, nameof(SearchWordView));
-            TheSearchWordView.Visibility = Visibility.Visible;
-            TheTranslationView.Visibility = Visibility.Collapsed;
+            ShowWordView();
         }
 
         #region 窗口事件

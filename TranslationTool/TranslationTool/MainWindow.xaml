@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:TranslationTool"
         xmlns:views="clr-namespace:TranslationTool.Views"
         xmlns:helper="clr-namespace:TranslationTool.Helper"
-        x:Name="TheMainWindow" Title="翻译" SizeToContent="Height" Width="650" Icon="Images/bitbug_favicon.ico"
+        x:Name="TheMainWindow" Title="单词" SizeToContent="Height" Width="650" Icon="Images/bitbug_favicon.ico"
         BorderBrush="#D0D1D6" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent">
     <Window.Resources>

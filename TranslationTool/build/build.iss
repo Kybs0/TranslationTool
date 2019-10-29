@@ -30,7 +30,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\{#MyAppName}\bin\Debug\{#MyAppName}.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\{#MyAppName}\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\{#MyAppName}\bin\Debug\*";  Excludes: "*.bak,*.pdb,*.dll.config,*.ax,*\Log\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppChineseName}"; Filename: "{app}\{#MyAppName}"
