@@ -18,7 +18,20 @@ namespace Translation.WebApi
 
             try
             {
-                return await RequestDataAsync(requestUrl);
+                WebRequest translationWebRequest = WebRequest.Create(requestUrl);
+
+                var response = await translationWebRequest.GetResponseAsync();
+
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (StreamReader reader = new StreamReader(stream ?? throw new InvalidOperationException(),
+                        Encoding.GetEncoding("utf-8")))
+                    {
+                        string result = reader.ReadToEnd();
+                        var decodeResult = Unicode2String(result);
+                        return decodeResult;
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -37,23 +50,7 @@ namespace Translation.WebApi
             }
         }
 
-        private static async Task<string> RequestDataAsync(string requestUrl)
-        {
-            WebRequest translationWebRequest = WebRequest.Create(requestUrl);
 
-            var response = await translationWebRequest.GetResponseAsync();
-
-            using (Stream stream = response.GetResponseStream())
-            {
-                using (StreamReader reader = new StreamReader(stream ?? throw new InvalidOperationException(),
-                    Encoding.GetEncoding("utf-8")))
-                {
-                    string result = reader.ReadToEnd();
-                    var decodeResult = Unicode2String(result);
-                    return decodeResult;
-                }
-            }
-        }
 
         /// <summary>
         /// Unicode转字符串
