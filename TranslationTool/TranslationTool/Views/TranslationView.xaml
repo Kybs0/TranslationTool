@@ -33,9 +33,9 @@
                          BorderBrush="#CCCCCC"/>
                     <StackPanel Margin="10 8"
                         Visibility="{Binding ElementName=SearchingTextBox, Path= Text,Converter={StaticResource NullOrEmptyToVisibilityReverseConverter}}">
-                        <TextBlock Text="按Enter键查询" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        <!--<TextBlock Text="按Enter键查询" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
                                    Foreground="LightGray" IsHitTestVisible="True"
-                                   PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"/>
+                                   PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"/>-->
                         <TextBlock Text="按Alt+Enter换行" Margin="0 4 0 0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
                                    Foreground="LightGray" IsHitTestVisible="True"
                                    PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"/>

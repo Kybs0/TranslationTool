@@ -29,15 +29,21 @@ namespace Translation.WebApi.KinsoftApi
                 translationData.Word = word;
 
                 var pronouncesList=dictXmlNode.SelectNodes("ps");
-                var pronouncesAudioList=dictXmlNode.SelectNodes("pron");
-                var usPronounceInfo = new PronounceInfo();
-                usPronounceInfo.Pronounce=pronouncesList[0].InnerText;
-                usPronounceInfo.PronounceUri=pronouncesAudioList[0].InnerText;
-                translationData.UsPronounce = usPronounceInfo;
-                var ukPronounceInfo = new PronounceInfo();
-                ukPronounceInfo.Pronounce=pronouncesList[1].InnerText;
-                ukPronounceInfo.PronounceUri=pronouncesAudioList[1].InnerText;
-                translationData.UkPronounce = ukPronounceInfo;
+                if (pronouncesList?.Count>0)
+                {
+                    var pronouncesAudioList=dictXmlNode.SelectNodes("pron");
+                    var usPronounceInfo = new PronounceInfo();
+                    usPronounceInfo.Pronounce=pronouncesList[0].InnerText;
+                    usPronounceInfo.PronounceUri=pronouncesAudioList[0].InnerText;
+                    translationData.UsPronounce = usPronounceInfo;
+                    if (pronouncesList.Count>1)
+                    {
+                        var ukPronounceInfo = new PronounceInfo();
+                        ukPronounceInfo.Pronounce=pronouncesList[1].InnerText;
+                        ukPronounceInfo.PronounceUri=pronouncesAudioList[1].InnerText;
+                        translationData.UkPronounce = ukPronounceInfo;
+                    }
+                }
 
                 var sentences = new List<SentenceInfo>();
                 var sentenceNodeList=dictXmlNode.SelectNodes("sent");
