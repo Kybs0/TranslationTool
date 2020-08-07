@@ -198,7 +198,7 @@
                     <Button x:Name="SearchButton" Content="搜索" Command="{Binding SearchCommand}" Foreground="#464646"
                             Height="32" Template="{StaticResource SearchButtonTemplate}" VerticalAlignment="Center"
                             HorizontalAlignment="Right" Padding="6 0 12 0" Background="White" 
-                            BorderBrush="Transparent" BorderThickness="1" Cursor="Hand"/>
+                            BorderBrush="Transparent" BorderThickness="1" Cursor="Arrow"/>
                 </Grid>
             </StackPanel>
         </Grid>

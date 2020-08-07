@@ -47,6 +47,6 @@
             </StackPanel>
         </Grid>
         <TextBox Grid.Row="1" Text="{Binding Translation}" Margin="0 30 0 0" TextWrapping="Wrap" Foreground="#666666"
-                 Height="180" Padding="6" FontSize="16" AcceptsReturn="True" AcceptsTab="True" BorderBrush="#CCCCCC"/>
+                 Height="180" Padding="6 8 6 8" FontSize="16" AcceptsReturn="True" AcceptsTab="True" BorderBrush="#CCCCCC"/>
     </Grid>
 </UserControl>
