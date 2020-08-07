@@ -25,36 +25,38 @@ namespace Translation.WebApi.KinsoftApi
             try
             {
                 var result = await RequestUrlAsync(requestUrl);
-
-                var response = JsonConvert.DeserializeObject<KinsoftIntergateDataResponse>(result);
-                var translationData = new EnglishWordTranslationData()
+                if (!result.Contains("DOCTYPE html"))
                 {
-                    Word = response.KinsoftBaseInfoDictionary?.WordName ?? string.Empty,
-                    DetailJson = result,
-                };
-                translationData.UkPronounce = response.KinsoftBaseInfoDictionary?.GetUkPronounce() ?? new PronounceInfo();
-                translationData.UsPronounce = response.KinsoftBaseInfoDictionary?.GetUsPronounce() ?? new PronounceInfo();
-                translationData.Translations = response.KinsoftBaseInfoDictionary?.GetTranslations() ?? new List<SematicInfo>();
+                    var response = JsonConvert.DeserializeObject<KinsoftIntergateDataResponse>(result);
+                    var translationData = new EnglishWordTranslationData()
+                    {
+                        Word = response.KinsoftBaseInfoDictionary?.WordName ?? string.Empty,
+                        DetailJson = result,
+                    };
+                    translationData.UkPronounce = response.KinsoftBaseInfoDictionary?.GetUkPronounce() ?? new PronounceInfo();
+                    translationData.UsPronounce = response.KinsoftBaseInfoDictionary?.GetUsPronounce() ?? new PronounceInfo();
+                    translationData.Translations = response.KinsoftBaseInfoDictionary?.GetTranslations() ?? new List<SematicInfo>();
 
-                var phraseInfos = new List<PhraseInfo>();
-                response.KinsoftPhraseInfos?.ForEach(i => phraseInfos.AddRange(i.GetPhrases()));
-                translationData.Phrases = phraseInfos;
+                    var phraseInfos = new List<PhraseInfo>();
+                    response.KinsoftPhraseInfos?.ForEach(i => phraseInfos.AddRange(i.GetPhrases()));
+                    translationData.Phrases = phraseInfos;
 
-                var synonymInfos = new List<SynonymInfo>();
-                response.KinsoftSynonymInfos?.ForEach(i => synonymInfos.AddRange(i.GetSynonymWords()));
-                translationData.Synonyms = synonymInfos;
+                    var synonymInfos = new List<SynonymInfo>();
+                    response.KinsoftSynonymInfos?.ForEach(i => synonymInfos.AddRange(i.GetSynonymWords()));
+                    translationData.Synonyms = synonymInfos;
 
-                translationData.Cognates = response.KinsoftBaseInfoDictionary?.GetCognateWords() ?? new List<CognateInfo>(); ;
+                    translationData.Cognates = response.KinsoftBaseInfoDictionary?.GetCognateWords() ?? new List<CognateInfo>(); ;
 
-                var sentences = new List<SentenceInfo>();
-                response.KinsoftSentences?.ForEach(i => sentences.Add(new SentenceInfo()
-                {
-                    Translation = i.ChineseSentence,
-                    Sentence = i.EnglishSentence,
-                    EnglishSentenceUri = i.SentenceMp3Uri
-                }));
-                translationData.Sentences = sentences;
-                return translationData;
+                    var sentences = new List<SentenceInfo>();
+                    response.KinsoftSentences?.ForEach(i => sentences.Add(new SentenceInfo()
+                    {
+                        Translation = i.ChineseSentence,
+                        Sentence = i.EnglishSentence,
+                        EnglishSentenceUri = i.SentenceMp3Uri
+                    }));
+                    translationData.Sentences = sentences;
+                    return translationData;
+                }
             }
             catch (Exception)
             {
