@@ -276,7 +276,7 @@
                             <ItemsControl ItemsSource="{Binding Sentences,Mode=OneWay}" Margin="0 6 0 6" Padding="0 0 6 6">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Margin="0 4 0 4">
+                                        <StackPanel Margin="0 4 0 0">
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBox Text="{Binding EnglishSentence}" TextWrapping="Wrap"  BorderThickness="0" VerticalAlignment="Center"/>
                                                 <Button Margin="2 0 0 0" Style="{StaticResource Style.GeometryInteractiveButton}"
