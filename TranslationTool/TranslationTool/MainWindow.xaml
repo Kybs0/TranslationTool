@@ -98,15 +98,15 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="0">
                 <views:SearchWordView x:Name="TheSearchWordView" Visibility="Visible"/>
                 <views:TranslationView x:Name="TheTranslationView" Visibility="Collapsed"/>
                 <Button x:Name="ShowTranslationViewButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="32" Height="32"
-                        Click="ShowTranslationViewButton_OnClick"
+                        Click="ShowTranslationViewButton_OnClick" Margin="10"
                         Visibility="{Binding ElementName=TheSearchWordView,Path=Visibility}" 
                         Template="{StaticResource ImageContentButtonTemplate}" helper:ControlHelper.ImageSource="../Images/translate.png"/>
                 <Button x:Name="BackToWordViewButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="24" Height="24"
-                        Click="BackToWordViewButton_OnClick"
+                        Click="BackToWordViewButton_OnClick" Margin="10"
                         Visibility="{Binding ElementName=TheTranslationView,Path=Visibility}" 
                         Template="{StaticResource ImageContentButtonTemplate}" helper:ControlHelper.ImageSource="../Images/beidanci (1).png" />
             </Grid>

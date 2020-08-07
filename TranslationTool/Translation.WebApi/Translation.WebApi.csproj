@@ -100,9 +100,11 @@
     <Compile Include="GooleApi\BrokenTranslation\GooleBrokenTranslationService.cs" />
     <Compile Include="KinsoftApi\Translate\KinsoftUnOfficialTranslationApiService.cs" />
     <Compile Include="KinsoftApi\Translate\KinsoftUnOfficialTranslationResponse.cs" />
+    <Compile Include="KinsoftApi\Word\KinsoftDictApiService.cs" />
+    <Compile Include="KinsoftApi\Word\OfficialApi\JinShanOfficalDictDataResponse.cs" />
     <Compile Include="KinsoftApi\Word\OfficialApi\JinShanOfficialApiService.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\JinShanIntergateDataResponse.cs" />
-    <Compile Include="KinsoftApi\Word\UnofficalApi\JinShanUnOfficialApiService.cs" />
+    <Compile Include="KinsoftApi\Word\UnofficalApi\KinsoftUnOfficialApiService.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\RequestDataModel\Dictionary\JinShanBaseInfoDictionary.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\RequestDataModel\Dictionary\JinShanNetMeanDictionary.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\RequestDataModel\Dictionary\JinShanPhraseInfo.cs" />

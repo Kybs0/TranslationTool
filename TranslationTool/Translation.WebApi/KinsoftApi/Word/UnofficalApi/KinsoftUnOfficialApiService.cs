@@ -56,10 +56,12 @@ namespace Translation.WebApi.KinsoftApi
                 translationData.Sentences = sentences;
                 return translationData;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return new EnglishWordTranslationData();
+                // ignored
             }
+
+            return null;
         }
 
         private static string GetRequestUrl(string queryWord)

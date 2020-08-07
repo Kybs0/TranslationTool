@@ -95,7 +95,7 @@ namespace TranslationTool.ViewModels
                     default:
                         {
                             var wordDataYoudao = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
-                            var wordDataKinsoft = await KinsoftUnOfficialApiService.GetWordsAsync(searchingText);
+                            var wordDataKinsoft = await KinsoftDictApiService.GetWordsAsync(searchingText);
                             wordData.Word = string.IsNullOrEmpty(wordDataKinsoft.Word)?wordDataYoudao.Word:wordDataKinsoft.Word;
                             wordData.UsPronounce = string.IsNullOrEmpty(wordDataKinsoft.UsPronounce?.Pronounce) ? wordDataYoudao.UsPronounce:wordDataKinsoft.UsPronounce;
                             wordData.UkPronounce = string.IsNullOrEmpty(wordDataKinsoft.UkPronounce?.Pronounce) ? wordDataYoudao.UkPronounce:wordDataKinsoft.UkPronounce;
