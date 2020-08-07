@@ -100,6 +100,7 @@
     <Compile Include="GooleApi\BrokenTranslation\GooleBrokenTranslationService.cs" />
     <Compile Include="KinsoftApi\Translate\KinsoftUnOfficialTranslationApiService.cs" />
     <Compile Include="KinsoftApi\Translate\KinsoftUnOfficialTranslationResponse.cs" />
+    <Compile Include="KinsoftApi\Word\OfficialApi\JinShanOfficialApiService.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\JinShanIntergateDataResponse.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\JinShanUnOfficialApiService.cs" />
     <Compile Include="KinsoftApi\Word\UnofficalApi\RequestDataModel\Dictionary\JinShanBaseInfoDictionary.cs" />
