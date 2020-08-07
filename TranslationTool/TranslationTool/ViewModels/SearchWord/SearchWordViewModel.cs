@@ -294,7 +294,7 @@ namespace TranslationTool.ViewModels
         private string _phrases;
         public string Phrases
         {
-            get => _phrases;
+            get => string.IsNullOrEmpty(_phrases)?_phrases:_phrases.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _phrases = value;
@@ -304,7 +304,7 @@ namespace TranslationTool.ViewModels
         private string _synonyms;
         public string Synonyms
         {
-            get => _synonyms;
+            get => string.IsNullOrEmpty(_synonyms)?_synonyms:_synonyms.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _synonyms = value;
@@ -314,7 +314,7 @@ namespace TranslationTool.ViewModels
         private string _translation;
         public string Translation
         {
-            get => _translation;
+            get => string.IsNullOrEmpty(_translation)?_translation:_translation.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _translation = value;
@@ -325,7 +325,7 @@ namespace TranslationTool.ViewModels
         private string _cognates;
         public string Cognates
         {
-            get => _cognates;
+            get => string.IsNullOrEmpty(_cognates)?_cognates:_cognates.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _cognates = value;
@@ -335,7 +335,7 @@ namespace TranslationTool.ViewModels
         private string _searchResultDetail;
         public string SearchResultDetail
         {
-            get => _searchResultDetail;
+            get =>  string.IsNullOrEmpty(_searchResultDetail)?_searchResultDetail:_searchResultDetail.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _searchResultDetail = value;
