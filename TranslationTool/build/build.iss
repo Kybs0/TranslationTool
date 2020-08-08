@@ -1,8 +1,8 @@
 #define MyAppName "TranslationTool"
-#define MyAppChineseName "·­Òë¹¤¾ß"
+#define MyAppChineseName "ç¿»è¯‘å·¥å…·"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "dotnet school"
-#define MyAppURL "https://dotnet-campus.github.io/"
+#define MyAppURL "https://github.com/Kybs0/"
 #define MyAppExeName "TranslationTool.exe"
 
 [Setup]
