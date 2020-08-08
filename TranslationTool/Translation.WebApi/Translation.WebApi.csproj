@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioApi\WordAudioFileService.cs" />
     <Compile Include="BaiduApi\Translation\BaiduOfficialTranslationResponse.cs" />
     <Compile Include="BaiduApi\Translation\BaiduOfficialTranslationApiService.cs" />
     <Compile Include="GooleApi\BrokenTranslation\GooleBrokenTranslationApi.cs" />

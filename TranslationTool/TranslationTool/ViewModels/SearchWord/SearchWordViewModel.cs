@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using Translation.Api;
 using Translation.WebApi;
+using Translation.WebApi.AudioApi;
 using Translation.WebApi.KinsoftApi;
 using Translation.WebApi.YouDaoApi;
 using TranslationTool.Annotations;
@@ -123,8 +124,8 @@ namespace TranslationTool.ViewModels
             CurrentWord = result.Word;
             SearchResultDetail = result.DetailJson;
             SetTranslation(wordData);
-            UsPronounce = PronounceModel.ConvertFrom(result.UsPronounce);
-            UkPronounce = PronounceModel.ConvertFrom(result.UkPronounce);
+            UsPronounce = PronounceModel.ConvertFrom(result.UsPronounce,PronounceType.Us,result.Word);
+            UkPronounce = PronounceModel.ConvertFrom(result.UkPronounce,PronounceType.Uk,result.Word);
             SetPhrases(result.Phrases);
             SetSynonyms(result.Synonyms);
             SetCognates(result.Cognates);
@@ -180,7 +181,8 @@ namespace TranslationTool.ViewModels
             var baseInfo = string.Empty;
             foreach (var wordDataTranslation in wordData.Translations)
             {
-                baseInfo += $"{wordDataTranslation.WordType} { wordDataTranslation.Translation}\r\n";
+                var separator=string.IsNullOrWhiteSpace(wordDataTranslation.WordType) ? "" : " ";
+                baseInfo += $"{wordDataTranslation.WordType?.Trim()}{separator}{ wordDataTranslation.Translation.Trim()}\r\n";
             }
 
             Translation = baseInfo;

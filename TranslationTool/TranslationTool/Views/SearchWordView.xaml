@@ -272,16 +272,22 @@
                         </ScrollViewer>
                     </TabItem>
                     <TabItem x:Name="SentenceTabItem" Header="例句" MinWidth="122" Style="{StaticResource Style.TabItem}">
-                        <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
-                            <ItemsControl ItemsSource="{Binding Sentences,Mode=OneWay}" Margin="0 6 0 6" Padding="0 0 6 6">
+                        <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding Sentences,Mode=OneWay}" Margin="0 2 0 6" Padding="0 0 0 6">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Margin="0 4 0 0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBox Text="{Binding EnglishSentence}" TextWrapping="Wrap"  BorderThickness="0" VerticalAlignment="Center"/>
-                                                <Button Margin="2 0 0 0" Style="{StaticResource Style.GeometryInteractiveButton}"
+                                        <Grid Margin="0 4 0 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Background="Red">
+                                                <TextBox Text="{Binding EnglishSentence}" TextWrapping="WrapWithOverflow"
+                                                         BorderThickness="0" VerticalAlignment="Center"/>
+                                                <Button Margin="0 0 15 2" Style="{StaticResource Style.GeometryInteractiveButton}" 
+                                                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                             Command="{Binding ElementName=TheSearchWordView,Path=DataContext.SpeekCommand}" CommandParameter="{Binding EnglishSentenceUri}"
-                                                            Visibility="{Binding EnglishSentenceUri,Converter={StaticResource NullOrEmptyToVisibilityConverter}}" VerticalAlignment="Center">
+                                                            Visibility="{Binding EnglishSentenceUri,Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
                                                     <Button.ContextMenu>
                                                         <ContextMenu Padding="-1 0" Margin="0" BorderThickness="0">
                                                             <MenuItem x:Name="DownloadSentenceButton" Click="DownloadSentenceButton_OnClick" Header="下载音频"
@@ -289,9 +295,9 @@
                                                         </ContextMenu>
                                                     </Button.ContextMenu>
                                                 </Button>
-                                            </StackPanel>
-                                            <TextBox Text="{Binding ChineseSentence}" TextWrapping="Wrap"  BorderThickness="0" Margin="0 2 0 0"/>
-                                        </StackPanel>
+                                            </Grid>
+                                            <TextBox Grid.Row="1" Text="{Binding ChineseSentence}" TextWrapping="Wrap"  BorderThickness="0" Margin="0 2 0 0"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -311,7 +317,7 @@
                     </TabItem>
                     <TabItem x:Name="PhraseExtensionTabItem" Header="扩展词组" MinWidth="122" Visibility="Collapsed" 
                              Style="{StaticResource Style.TabItem}">
-                        <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" Margin="0 8 0 8" Padding="0 0 6 6">
+                        <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" Margin="0 8 0 8" Padding="0 0 0 6">
                             <ItemsControl>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>

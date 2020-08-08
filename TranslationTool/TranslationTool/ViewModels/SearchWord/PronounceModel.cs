@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Translation.Api;
 using Translation.WebApi;
+using Translation.WebApi.AudioApi;
 
 namespace TranslationTool.ViewModels
 {
@@ -38,28 +40,42 @@ namespace TranslationTool.ViewModels
                 OnPropertyChanged();
             }
         }
-        public static PronounceModel ConvertFrom(PronounceInfo pronounceInfo)
+        /// <summary>
+        /// 发音数据转换（包含下载音频文件）
+        /// </summary>
+        /// <param name="pronounceInfo"></param>
+        /// <param name="pronounceType">0:美式，1：英式</param>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public static PronounceModel ConvertFrom(PronounceInfo pronounceInfo, PronounceType pronounceType, string word)
         {
             var pronounceModel = new PronounceModel();
             pronounceModel.Pronounce = pronounceInfo.Pronounce;
-            Task.Run(() =>
+            if (!string.IsNullOrWhiteSpace(word)&&!string.IsNullOrWhiteSpace(pronounceInfo.Pronounce))
             {
-                var downloadSuccess =
-                    WebResourceDownloadHelper.Download(pronounceInfo.PronounceUri, out var downloadPath);
-                if (downloadSuccess)
+                Task.Run(() =>
                 {
-                    pronounceModel.PronounceUri = downloadPath;
-                }
-            });
+                    var downloadSuccess = WebResourceDownloadHelper.Download(pronounceInfo.PronounceUri, out var downloadPath);
+                    //从以下资源路径补充单词音频文件
+                    if (!downloadSuccess)
+                    {
+                        var youDaoAudioDownloadUrl = WordAudioFileService.GetYouDaoAudioDownloadUrl(word, pronounceType);
+                        downloadSuccess = WebResourceDownloadHelper.Download(youDaoAudioDownloadUrl, out downloadPath);
+                    }
+                    if (!downloadSuccess)
+                    {
+                        var shanBeiAudioDownloadUrl = WordAudioFileService.GetShanBeiAudioDownloadUrl(word, pronounceType);
+                        downloadSuccess = WebResourceDownloadHelper.Download(shanBeiAudioDownloadUrl, out downloadPath);
+                    }
+
+                    if (downloadSuccess && File.Exists(downloadPath))
+                    {
+                        pronounceModel.PronounceUri = downloadPath;
+                    }
+                });
+            }
+            
             return pronounceModel;
-        }
-    }
-
-    public static class PronounceModelExtension
-    {
-        public static void AAA()
-        {
-
         }
     }
 }
