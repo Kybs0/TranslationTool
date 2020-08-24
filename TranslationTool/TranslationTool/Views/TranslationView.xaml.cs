@@ -41,10 +41,17 @@ namespace TranslationTool.Views
 
         private void SearchingTextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
+            //Console.WriteLine("e.KeyboardDevice.Modifiers:" + e.KeyboardDevice.Modifiers + ",e.Key:" + e.Key);
+            //Console.WriteLine("Keyboard.IsKeyDown(Alt):" + Keyboard.IsKeyDown(Key.LeftAlt) + ",Keyboard.IsKeyDown(Key.Enter):" +Keyboard.IsKeyDown(Key.Enter));
+            
             var text = SearchingTextBox.Text;
-            if ((Control.ModifierKeys & Keys.Alt) != 0 && e.Key == Key.Enter)
+            if ((Keyboard.IsKeyDown(Key.LeftAlt)||Keyboard.IsKeyDown(Key.RightAlt)) && Keyboard.IsKeyDown(Key.Enter))
             {
-                SearchingTextBox.Text = text + "\r\n";
+                if (!string.IsNullOrWhiteSpace(SearchingTextBox.Text))
+                {
+                    SearchingTextBox.Text = text + "\r\n";
+                    SearchingTextBox.SelectionStart = SearchingTextBox.Text.Length;
+                }
                 return;
             }
             if (e.Key == Key.Enter)
