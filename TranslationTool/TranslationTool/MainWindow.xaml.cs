@@ -22,6 +22,7 @@ namespace TranslationTool
         {
             InitializeComponent();
             InitViewByOperationConfig();
+            Loaded += (s, e) => { MenuDropAlignmentHelper.DisableSystemMenuPopupAlignment(); };
         }
 
         private void InitViewByOperationConfig()

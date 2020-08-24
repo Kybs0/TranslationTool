@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -96,15 +97,79 @@ namespace TranslationTool.Views
         {
             if (sender is MenuItem menuItem && menuItem.DataContext is SentenceModel sentenceModel)
             {
-                if (string.IsNullOrEmpty(sentenceModel.EnglishSentenceUri) || !File.Exists(sentenceModel.EnglishSentenceUri))
+                var extension = ".mp3";
+                var hasAudioFile = !string.IsNullOrEmpty(sentenceModel.EnglishSentenceUri) &&
+                                   File.Exists(sentenceModel.EnglishSentenceUri);
+                if (hasAudioFile)
                 {
-                    return;
+                    extension = Path.GetExtension(sentenceModel.EnglishSentenceUri);
                 }
-
                 var sentence = sentenceModel.EnglishSentence.Length > 3
                     ? sentenceModel.EnglishSentence.Substring(3, sentenceModel.EnglishSentence.Length - 3)
                     : sentenceModel.EnglishSentence;
-                SaveFile(sentenceModel.EnglishSentenceUri, sentence);
+
+                var saveFileDialog = new SaveFileDialog();
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.FileName = sentence + extension;
+                saveFileDialog.Filter = $"音频文件(*{extension})|*{extension}";
+                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (saveFileDialog.ShowDialog(Window.GetWindow(this)) == true)
+                {
+                    var fileName = saveFileDialog.FileName;
+                    if (hasAudioFile)
+                    {
+                        File.Copy(sentenceModel.EnglishSentenceUri, fileName, true);
+                    }
+                    else
+                    {
+                        ExportSystemAudioFile(fileName, sentenceModel.EnglishSentence);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 导出系统音频
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="text"></param>
+        private void ExportSystemAudioFile(string filePath, string text)
+        {
+            using (SpeechSynthesizer speechSyn = new SpeechSynthesizer())
+            {
+                speechSyn.Volume = 50;
+                speechSyn.Rate = 0;
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+                speechSyn.SetOutputToWaveFile(filePath);
+                speechSyn.Speak(text);
+                speechSyn.SetOutputToDefaultAudioDevice();
+            }
+        }
+
+        private readonly SpeechSynthesizer _speechSyn = new SpeechSynthesizer();
+        private void SpeakSentenceButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is SentenceModel sentenceModel)
+            {
+                if (!string.IsNullOrEmpty(sentenceModel.EnglishSentenceUri) && File.Exists(sentenceModel.EnglishSentenceUri))
+                {
+                    (this.DataContext as SearchWordViewModel)?.SpeekCommand.Execute(sentenceModel.EnglishSentenceUri);
+                }
+                else
+                {
+                    //系统读音
+                    var currentSpokenPrompt = _speechSyn.GetCurrentlySpokenPrompt();
+                    if (currentSpokenPrompt != null)
+                    {
+                        _speechSyn.SpeakAsyncCancel(currentSpokenPrompt);
+                    }
+                    _speechSyn.SpeakAsync(sentenceModel.EnglishSentence);
+                }
             }
         }
     }

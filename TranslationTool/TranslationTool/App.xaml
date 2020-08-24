@@ -102,19 +102,39 @@
                 </GeometryDrawing>
             </DrawingImage.Drawing>
         </DrawingImage>
+
         <ControlTemplate x:Key="MenuItem.Download" TargetType="MenuItem">
-            <Grid x:Name="RootGrid">
+            <Border x:Name="RootGrid">
                 <StackPanel Orientation="Horizontal" Margin="6">
                     <Image Source="{StaticResource Image.Download}" Stretch="Uniform" Width="16" Height="16" VerticalAlignment="Center"></Image>
                     <TextBlock Text="{TemplateBinding Header}" Margin="12 0"></TextBlock>
                 </StackPanel>
-            </Grid>
+            </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter TargetName="RootGrid" Property="Background" Value="#FABCD9AD"></Setter>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <AdornerDecorator>
+                            <Border x:Name="RootBorder" Background="{TemplateBinding Background}" BorderThickness="6">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="4" Color="#E4E4E4" ShadowDepth="0"/>
+                                </Border.Effect>
+                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            </Border>
+                        </AdornerDecorator>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="Style.ComboBox" TargetType="{x:Type ComboBox}">
             <Setter Property="SnapsToDevicePixels" Value="True" />

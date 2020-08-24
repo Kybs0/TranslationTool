@@ -90,6 +90,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
@@ -117,6 +118,7 @@
     <Compile Include="Converter\BoolToVisibility.cs" />
     <Compile Include="Helper\AnimationBuilder.cs" />
     <Compile Include="Converter\CountToVisibilityConverter.cs" />
+    <Compile Include="Helper\MenuDropAlignmentHelper.cs" />
     <Compile Include="Helper\ControlHelper.cs" />
     <Compile Include="Helper\DelegateCommand.cs" />
     <Compile Include="Helper\Mp3Player.cs" />
