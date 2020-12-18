@@ -1,5 +1,5 @@
 #define MyAppName "TranslationTool"
-#define MyAppChineseName "ç¿»è¯‘å·¥å…·"
+#define MyAppChineseName "·­Òë¹¤¾ß"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "dotnet school"
 #define MyAppURL "https://github.com/Kybs0/"
