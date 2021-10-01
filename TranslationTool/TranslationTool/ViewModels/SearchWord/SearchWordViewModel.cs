@@ -82,40 +82,21 @@ namespace TranslationTool.ViewModels
             var wordData = new EnglishWordTranslationData();
             if (!string.IsNullOrWhiteSpace(searchingText))
             {
-                switch (SelectedApiType)
-                {
-                    case "有道":
-                        {
-                            wordData = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
-                        }
-                        break;
-                    case "金山":
-                        {
-                            wordData = await KinsoftUnOfficialApiService.GetWordsAsync(searchingText);
-                        }
-                        break;
-                    default:
-                        {
-                            var wordDataYoudao = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
-                            var wordDataKinsoft = await KinsoftDictApiService.GetWordsAsync(searchingText);
-                            wordData.Word = string.IsNullOrEmpty(wordDataKinsoft.Word)?wordDataYoudao.Word:wordDataKinsoft.Word;
-                            wordData.UsPronounce = string.IsNullOrEmpty(wordDataKinsoft.UsPronounce?.Pronounce) ? wordDataYoudao.UsPronounce:wordDataKinsoft.UsPronounce;
-                            wordData.UkPronounce = string.IsNullOrEmpty(wordDataKinsoft.UkPronounce?.Pronounce) ? wordDataYoudao.UkPronounce:wordDataKinsoft.UkPronounce;
-                            wordData.DetailJson = wordDataYoudao.DetailJson + "\r\n" + wordDataKinsoft.DetailJson;
+                var wordDataYoudao = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
+                wordData.Word = wordDataYoudao.Word;
+                wordData.UsPronounce = wordDataYoudao.UsPronounce;
+                wordData.UkPronounce =wordDataYoudao.UkPronounce;
+                wordData.DetailJson = wordDataYoudao.DetailJson;
 
-                            wordData.Translations = wordDataKinsoft.Translations.Count > 0 ?wordDataKinsoft.Translations:wordDataYoudao.Translations;
-                            wordData.Phrases = wordDataYoudao.Phrases.Count > 0?wordDataYoudao.Phrases:wordDataKinsoft.Phrases;
-                            wordData.Sentences = wordDataKinsoft.Sentences.Count > 0?wordDataKinsoft.Sentences:wordDataYoudao.Sentences;
-                            wordData.Synonyms = wordDataYoudao.Synonyms.Count > 0 ? wordDataYoudao.Synonyms : wordDataKinsoft.Synonyms;
-                            wordData.Cognates = wordDataKinsoft.Cognates.Count > 0 ? wordDataKinsoft.Cognates : wordDataYoudao.Cognates;
-                        }
-                        break;
-                }
+                wordData.Translations = wordDataYoudao.Translations;
+                wordData.Phrases = wordDataYoudao.Phrases;
+                wordData.Sentences = wordDataYoudao.Sentences;
+                wordData.Synonyms = wordDataYoudao.Synonyms;
+                wordData.Cognates = wordDataYoudao.Cognates;
             }
 
             SetSearchedWordData(wordData);
             Application.Current.Dispatcher.Invoke(() => { IsSearching = false; });
-
         }
 
 
