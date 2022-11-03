@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -112,6 +112,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFDevelopers, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFDevelopers.1.0.9.2-preview\lib\net46\WPFDevelopers.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -232,19 +235,16 @@
     <Resource Include="Images\word.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\beidanci %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bitbug_favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bitbug_favicon.ico" />
+    <Resource Include="Images\beidanci.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\guanyu.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

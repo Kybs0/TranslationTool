@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:TranslationTool.ViewModels"
+             xmlns:wpfdev="https://github.com/WPFDevelopersOrg/WPFDevelopers"
              xmlns:helper="clr-namespace:TranslationTool.Helper"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:converter="clr-namespace:TranslationTool.Converter"
@@ -186,23 +187,34 @@
                       SelectedValue="{Binding SelectedApiType}" ItemsSource="{Binding ApiTypeList}"/>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" >
                 <Grid Cursor="IBeam">
-                    <TextBox x:Name="SearchingTextBox" Padding="4,4" FontSize="16" KeyDown="SearchingTextBox_OnKeyDown" TextAlignment="Left"
-                             MinWidth="220" MaxWidth="460" HorizontalAlignment="Center"  VerticalAlignment="Center" FocusVisualStyle="{x:Null}"
-                             Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#464646"
-                             InputMethod.PreferredImeConversionMode="Alphanumeric" SpellCheck.IsEnabled="True" BorderBrush="#CCCCCC"
-                             TextBlock.LineHeight="22"/>
-                    <TextBlock Text="搜索单词" Margin="8,0" FontSize="14" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="True"
-                               PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown" 
-                               Visibility="{Binding ElementName=SearchingTextBox, Path= Text,Converter={StaticResource NullOrEmptyToVisibilityReverseConverter}}"/>
-                    <Button x:Name="SearchButton" Content="搜索" Command="{Binding SearchCommand}" Foreground="#464646"
-                            Height="32" Template="{StaticResource SearchButtonTemplate}" VerticalAlignment="Center"
-                            HorizontalAlignment="Right" Padding="6 0 12 0" Background="White" 
-                            BorderBrush="Transparent" BorderThickness="1" Cursor="Arrow"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SearchingTextBox"
+                             KeyDown="SearchingTextBox_OnKeyDown" TextAlignment="Left"
+                             Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" 
+                             InputMethod.PreferredImeConversionMode="Alphanumeric" 
+                             SpellCheck.IsEnabled="True" 
+                             MaxWidth="200"
+                             wpfdev:ElementHelper.IsWatermark="True"
+                             wpfdev:ElementHelper.Watermark="搜索单词"/>
+                    <Button x:Name="SearchButton"
+                            Grid.Column="1"
+                            Command="{Binding SearchCommand}"  
+                            Margin="4,0">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <Image Stretch="Fill" SnapsToDevicePixels="True" 
+                                   UseLayoutRounding="True" Width="16" Height="16"
+                           VerticalAlignment="Center" Source="../Images/search.png"/>
+                            <TextBlock Text="搜索" Margin="4 0 0 0"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" VerticalAlignment="Stretch" Margin="10 0 0 0">
+        <Grid Grid.Row="1" VerticalAlignment="Stretch">
             <Grid x:Name="WordDetailGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -253,9 +265,8 @@
                     <CheckBox x:Name="DetailCheckBox" Content="详细信息" HorizontalAlignment="Right" Visibility="Collapsed" Foreground="#666666"
                           VerticalContentAlignment="Center" VerticalAlignment="Center" IsChecked="False"/>
                 </Grid>
-                <TabControl x:Name="TheTabControl" Grid.Row="1" Margin="6 6 0 0" HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch" Height="250" BorderThickness="0" Background="Transparent"
-                        Style="{StaticResource Style.WordInfoTab}">
+                <TabControl x:Name="TheTabControl" Grid.Row="1" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch" Height="250">
                     <TabControl.Resources>
                         <Style TargetType="TextBox">
                             <Setter Property="Foreground" Value="#666666"></Setter>
@@ -266,15 +277,14 @@
                             <Setter Property="FontSize" Value="16"></Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem x:Name="SemanticTabItem" Header="基本释义" MinWidth="122" IsSelected="True" 
-                             Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SemanticTabItem" Header="基本释义" MinWidth="122" IsSelected="True">
                         <ScrollViewer HorizontalAlignment="Stretch" Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Translation, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="0 8 0 8" 
                                      TextBlock.LineHeight="22"
                                  Visibility="{Binding Translation,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="SentenceTabItem" Header="例句" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SentenceTabItem" Header="例句" MinWidth="122">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" HorizontalScrollBarVisibility="Disabled">
                             <ItemsControl ItemsSource="{Binding Sentences,Mode=OneWay}" Margin="-4 2 0 6" Padding="0 0 0 6">
                                 <ItemsControl.ItemTemplate>
@@ -336,20 +346,19 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="CognateTabItem" Header="同根扩展" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="CognateTabItem" Header="同根扩展" MinWidth="122">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Cognates, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="0 8 0 8"
                                  Visibility="{Binding Cognates,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="PhraseTabItem" Header="词组" MinWidth="122"  Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="PhraseTabItem" Header="词组" MinWidth="122">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Phrases, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="0 8 0 8"
                                  Visibility="{Binding Phrases,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="PhraseExtensionTabItem" Header="扩展词组" MinWidth="122" Visibility="Collapsed" 
-                             Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="PhraseExtensionTabItem" Header="扩展词组" MinWidth="122" Visibility="Collapsed" >
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}" Margin="0 8 0 8" Padding="0 0 0 6">
                             <ItemsControl>
                                 <ItemsControl.ItemTemplate>
@@ -360,7 +369,7 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="SynonymTabItem" Header="近义词" MinWidth="122" Style="{StaticResource Style.TabItem}">
+                    <TabItem x:Name="SynonymTabItem" Header="近义词" MinWidth="122">
                         <ScrollViewer Width="{Binding ElementName=TheTabControl,Path=ActualWidth}">
                             <TextBox Text="{Binding Synonyms, Mode=OneWay}" TextWrapping="Wrap"  BorderThickness="0" Padding="0 8 0 8"
                                  Visibility="{Binding Synonyms,Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
