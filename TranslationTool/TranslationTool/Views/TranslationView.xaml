@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:wpfdev="https://github.com/WPFDevelopersOrg/WPFDevelopers"
              xmlns:local="clr-namespace:TranslationTool.Views"
              xmlns:viewModels="clr-namespace:TranslationTool.ViewModels"
              xmlns:converter="clr-namespace:TranslationTool.Converter"
@@ -21,54 +20,33 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <ComboBox x:Name="ApiComboBox" 
-                      VerticalAlignment="Top"
-                      SelectionChanged="ApiComboBox_OnSelectionChanged" 
-                      SelectedValue="{Binding SelectedApiType}" 
-                      ItemsSource="{Binding ApiTypeList}"
-                      Grid.Column="1" Visibility="Collapsed"/>
-            <Grid HorizontalAlignment="Center" 
-                  VerticalAlignment="Center"
-                  Margin="40,0,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBox x:Name="SearchingTextBox"
-                         TextWrapping="Wrap"
-                         Height="140" 
-                         MaxHeight="200"
-                         Width="350"
-                         AcceptsTab="True" 
-                         VerticalContentAlignment="Top"
-                         SpellCheck.IsEnabled="True" 
-                         Padding="2"
-                         Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" 
+            <ComboBox x:Name="ApiComboBox" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#666666" Background="#F4F4F4"
+                      SelectionChanged="ApiComboBox_OnSelectionChanged" MinWidth="70" Style="{StaticResource Style.ComboBox}"
+                      SelectedValue="{Binding SelectedApiType}" ItemsSource="{Binding ApiTypeList}"  Visibility="Collapsed"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 30 0 0">
+                <Grid Width="420" Height="140" MaxHeight="200" HorizontalAlignment="Center"  VerticalAlignment="Center" Cursor="IBeam">
+                    <TextBox x:Name="SearchingTextBox" Padding="6" FontSize="16" TextWrapping="Wrap"
+                         AcceptsTab="True" SpellCheck.IsEnabled="True" 
+                         Background="Transparent"
+                         Text="{Binding SearchingText,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" Foreground="#666666"
                          PreviewKeyDown="SearchingTextBox_OnPreviewKeyDown" 
-                         wpfdev:ElementHelper.IsWatermark="True"
-                         wpfdev:ElementHelper.Watermark="按Alt+Enter换行"/>
-                <Button x:Name="SearchButton" Command="{Binding SearchCommand}" 
-                        Margin="10,0" VerticalAlignment="Center"
-                        Grid.Column="1">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <Image Stretch="Fill" SnapsToDevicePixels="True" 
-                                   UseLayoutRounding="True" Width="16" Height="16"
-                           VerticalAlignment="Center" Source="../Images/search.png"/>
-                        <TextBlock Text="搜索" Margin="4 0 0 0"/>
+                         BorderBrush="#CCCCCC"/>
+                    <StackPanel Margin="10 8"
+                        Visibility="{Binding ElementName=SearchingTextBox, Path= Text,Converter={StaticResource NullOrEmptyToVisibilityReverseConverter}}">
+                        <!--<TextBlock Text="按Enter键查询" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
+                                   Foreground="LightGray" IsHitTestVisible="True"
+                                   PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"/>-->
+                        <TextBlock Text="按Alt+Enter换行" Margin="0 4 0 0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"
+                                   Foreground="LightGray" IsHitTestVisible="True"
+                                   PreviewMouseDown="SearchingHintTextBlock_OnPreviewMouseDown"/>
                     </StackPanel>
-                </Button>
-            </Grid>
+                </Grid>
+                <Button x:Name="SearchButton" Content="搜索" Command="{Binding SearchCommand}" 
+                        Height="28" Template="{StaticResource SearchButtonTemplate}" VerticalAlignment="Center" Foreground="#666666"
+                        HorizontalAlignment="Center" Margin="10 0 0 0" Padding="6 0 12 0" Background="White" BorderBrush="LightGray"/>
+            </StackPanel>
         </Grid>
-        <TextBox Grid.Row="1" Text="{Binding Translation}" 
-                 VerticalContentAlignment="Top"
-                 Margin="0 30 0 0" 
-                 TextWrapping="Wrap" Foreground="#666666"
-                 Height="180" Padding="6 8 6 8" 
-                 FontSize="16" AcceptsReturn="True"
-                 AcceptsTab="True"/>
+        <TextBox Grid.Row="1" Text="{Binding Translation}" Margin="0 30 0 0" TextWrapping="Wrap" Foreground="#666666"
+                 Height="180" Padding="6 8 6 8" FontSize="16" AcceptsReturn="True" AcceptsTab="True" BorderBrush="#CCCCCC"/>
     </Grid>
 </UserControl>

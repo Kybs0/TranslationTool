@@ -6,7 +6,7 @@ using System.Windows.Input;
 using Translation.Business.Util;
 using TranslationTool.Helper;
 using TranslationTool.Views;
-using Application = System.Windows.Application;
+using Application = System.Windows.Forms.Application;
 using ContextMenu = System.Windows.Forms.ContextMenu;
 using MenuItem = System.Windows.Forms.MenuItem;
 using MouseEventHandler = System.Windows.Forms.MouseEventHandler;
@@ -16,7 +16,7 @@ namespace TranslationTool
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow: Window
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -42,14 +42,14 @@ namespace TranslationTool
         {
             TheSearchWordView.Visibility = Visibility.Collapsed;
             TheTranslationView.Visibility = Visibility.Visible;
-            this.Title = "内容翻译";
+            this.Title = "翻译";
         }
 
         private void ShowWordView()
         {
             TheSearchWordView.Visibility = Visibility.Visible;
             TheTranslationView.Visibility = Visibility.Collapsed;
-            this.Title = "单词翻译";
+            this.Title = "单词";
         }
 
         private const double SlideTime = 300;
@@ -82,19 +82,15 @@ namespace TranslationTool
             this.Visibility = Visibility.Hidden;
         }
 
+        private void HeaderGrid_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
 
         #endregion
 
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void ShowMain_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Visible;
-            ShowInTaskbar = true;
-            Activate();
-        }
     }
 }
