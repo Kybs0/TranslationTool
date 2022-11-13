@@ -30,7 +30,7 @@
                       SelectionChanged="ApiComboBox_OnSelectionChanged" 
                       SelectedValue="{Binding SelectedApiType}" 
                       ItemsSource="{Binding ApiTypeList}"
-                      Grid.Column="1"/>
+                      Grid.Column="1" Visibility="Collapsed"/>
             <Grid HorizontalAlignment="Center" 
                   VerticalAlignment="Center"
                   Margin="40,0,0,0">
