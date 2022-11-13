@@ -8,6 +8,7 @@ using Translation.WebApi.BaiduApi.Translation;
 using Translation.WebApi.GooleApi.BrokenTranslation;
 using Translation.WebApi.KinsoftApi.Translate;
 using Translation.WebApi.YouDaoApi;
+using Translation.WebApi.YouDaoApi.Translate;
 
 namespace TranslationTool.ViewModels
 {
@@ -45,9 +46,7 @@ namespace TranslationTool.ViewModels
                         break;
                     case "有道":
                         {
-                            var translationResponse = await YouDaoOfficialApiService.GetWordsAsync(searchingText);
-                            var translations = translationResponse.FirstTranslation ?? new List<string>();
-                            translation = string.Join(";", translations);
+                            translation = await YouDaoUnOfficialTranslationApiService.GetTranslationAsync(searchingText);
                         }
                         break;
                     case "谷歌":
