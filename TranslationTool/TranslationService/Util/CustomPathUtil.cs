@@ -9,6 +9,7 @@ namespace Translation.Util
 {
     public static class CustomPathUtil
     {
+        public static string WordsFile=> Path.Combine(Directory.GetCurrentDirectory(), @".packages\Words.db3");
         public static string DbSourcePath => Path.Combine(Directory.GetCurrentDirectory(), "Resources/EnglishDict.db3");
         public static string DbOuputPath => Path.Combine(Directory.GetCurrentDirectory(), "Resources/EnglishDictTemplate.db3");
         public static string WordAudioFolder => Path.Combine(Directory.GetCurrentDirectory(), "AudioFiles/Words");

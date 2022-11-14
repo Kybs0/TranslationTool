@@ -17,6 +17,7 @@ namespace Translation.WebApi.YouDaoApi
     {
         public static async Task<EnglishWordTranslationData> GetWordsAsync(string queryText)
         {
+            return new EnglishWordTranslationData();
             if (string.IsNullOrWhiteSpace(queryText))
             {
                 return new EnglishWordTranslationData();

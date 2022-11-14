@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Translation.Api;
+using Translation.Business;
 using Translation.WebApi;
 using Translation.WebApi.AudioApi;
 using Translation.WebApi.KinsoftApi;
@@ -82,17 +83,22 @@ namespace TranslationTool.ViewModels
             var wordData = new EnglishWordTranslationData();
             if (!string.IsNullOrWhiteSpace(searchingText))
             {
-                var wordDataYoudao = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
-                wordData.Word = wordDataYoudao.Word;
-                wordData.UsPronounce = wordDataYoudao.UsPronounce;
-                wordData.UkPronounce =wordDataYoudao.UkPronounce;
-                wordData.DetailJson = wordDataYoudao.DetailJson;
+                var searchedData = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
+                if (string.IsNullOrEmpty(searchedData.Word))
+                {
+                    searchedData = await LocalWordService.GetWordsAsync(searchingText);
+                }
 
-                wordData.Translations = wordDataYoudao.Translations;
-                wordData.Phrases = wordDataYoudao.Phrases;
-                wordData.Sentences = wordDataYoudao.Sentences;
-                wordData.Synonyms = wordDataYoudao.Synonyms;
-                wordData.Cognates = wordDataYoudao.Cognates;
+                wordData.Word = searchedData.Word;
+                wordData.UsPronounce = searchedData.UsPronounce;
+                wordData.UkPronounce =searchedData.UkPronounce;
+                wordData.DetailJson = searchedData.DetailJson;
+
+                wordData.Translations = searchedData.Translations;
+                wordData.Phrases = searchedData.Phrases;
+                wordData.Sentences = searchedData.Sentences;
+                wordData.Synonyms = searchedData.Synonyms;
+                wordData.Cognates = searchedData.Cognates;
             }
 
             SetSearchedWordData(wordData);
