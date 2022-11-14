@@ -2,7 +2,7 @@
 using System.Data;
 using LinqToDB.DataProvider.SQLite;
 
-namespace Translation.Business
+namespace TranslationExportTool
 {
     public class DbCache<TDB> where TDB : LinqToDB.Data.DataConnection, new()
     {

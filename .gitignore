@@ -253,3 +253,4 @@ paket-files/
 __pycache__/
 *.pyc
 /TranslationTool/packages
+/TranslationTool/TranslationTool/bin/Debug/x64/SQLite.Interop.dll

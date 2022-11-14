@@ -6,11 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
 
-namespace Translation.Business
+namespace TranslationExportTool
 {
     public class EnglishWordSqliteHelper
     {
-        private readonly string DbName = "EnglishDict.db3";
         private readonly DbCache<EnglishWordDb> _englishWordCache;
         private List<WordInfo> _englishWords = new List<WordInfo>();
 
@@ -24,7 +23,7 @@ namespace Translation.Business
         {
             _englishWordCache.ExecuteTransaction(englishWordDb =>
             {
-                if (_englishWords.All(i=>i.Word!=wordInfo.Word))
+                if (_englishWords.All(i => i.Word != wordInfo.Word))
                 {
                     _englishWords.Add(wordInfo);
                     englishWordDb.Insert(wordInfo);
@@ -46,20 +45,30 @@ namespace Translation.Business
             return _englishWords;
         }
 
-        public WordInfo GetWord(string word)
+        public async Task<WordInfo> GetWordAsync(string word)
         {
-            var words = _englishWords;
-            if (words == null || words.Count == 0)
+            return await Task.Run(() =>
             {
-                words = _englishWords = GetAllWords();
-            }
+                var words = _englishWords;
+                if (words == null || words.Count == 0)
+                {
+                    words = _englishWords = GetAllWords();
+                }
 
-            return words.FirstOrDefault(i => i.Word == word);
+                return words.FirstOrDefault(i => i.Word == word);
+            });
         }
 
         public void DeleteWord(WordInfo word)
         {
-            _englishWordCache.ExecuteTransaction(englishWordDb => { englishWordDb.Delete(word); });
+            _englishWordCache.ExecuteTransaction(englishWordDb =>
+            {
+                if (_englishWords.Any(i => i.Word == word.Word))
+                {
+                    _englishWords.Remove(_englishWords.First(i => i.Word == word.Word));
+                    englishWordDb.Delete(word);
+                }
+            });
         }
     }
 }

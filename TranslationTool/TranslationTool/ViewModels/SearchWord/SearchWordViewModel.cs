@@ -12,17 +12,21 @@ using Translation.WebApi;
 using Translation.WebApi.AudioApi;
 using Translation.WebApi.KinsoftApi;
 using Translation.WebApi.YouDaoApi;
+using TranslationExportTool;
 using TranslationTool.Annotations;
 using TranslationTool.Helper;
+using CustomPathUtil = Translation.Util.CustomPathUtil;
 
 namespace TranslationTool.ViewModels
 {
     public class SearchWordViewModel : ViewModelBase
     {
+        private EnglishWordSqliteHelper _englishWordSource;
         public SearchWordViewModel()
         {
             SearchCommand = new DelegateCommand(Search_OnExecute);
             SpeekCommand = new DelegateCommand<string>(Speek_OnExecute);
+            _englishWordSource = new EnglishWordSqliteHelper(CustomPathUtil.WordsFile);
         }
 
         #region 发音
@@ -86,12 +90,12 @@ namespace TranslationTool.ViewModels
                 var searchedData = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
                 if (string.IsNullOrEmpty(searchedData.Word))
                 {
-                    searchedData = await LocalWordService.GetWordsAsync(searchingText);
+                    var wordInfo = await _englishWordSource.GetWordAsync(searchingText);
                 }
 
                 wordData.Word = searchedData.Word;
                 wordData.UsPronounce = searchedData.UsPronounce;
-                wordData.UkPronounce =searchedData.UkPronounce;
+                wordData.UkPronounce = searchedData.UkPronounce;
                 wordData.DetailJson = searchedData.DetailJson;
 
                 wordData.Translations = searchedData.Translations;
@@ -112,8 +116,8 @@ namespace TranslationTool.ViewModels
             CurrentWord = result.Word;
             SearchResultDetail = result.DetailJson;
             SetTranslation(wordData);
-            UsPronounce = PronounceModel.ConvertFrom(result.UsPronounce,PronounceType.Us,result.Word);
-            UkPronounce = PronounceModel.ConvertFrom(result.UkPronounce,PronounceType.Uk,result.Word);
+            UsPronounce = PronounceModel.ConvertFrom(result.UsPronounce, PronounceType.Us, result.Word);
+            UkPronounce = PronounceModel.ConvertFrom(result.UkPronounce, PronounceType.Uk, result.Word);
             SetPhrases(result.Phrases);
             SetSynonyms(result.Synonyms);
             SetCognates(result.Cognates);
@@ -169,7 +173,7 @@ namespace TranslationTool.ViewModels
             var baseInfo = string.Empty;
             foreach (var wordDataTranslation in wordData.Translations)
             {
-                var separator=string.IsNullOrWhiteSpace(wordDataTranslation.WordType) ? "" : " ";
+                var separator = string.IsNullOrWhiteSpace(wordDataTranslation.WordType) ? "" : " ";
                 baseInfo += $"{wordDataTranslation.WordType?.Trim()}{separator}{ wordDataTranslation.Translation.Trim()}\r\n";
             }
 
@@ -284,7 +288,7 @@ namespace TranslationTool.ViewModels
         private string _phrases;
         public string Phrases
         {
-            get => string.IsNullOrEmpty(_phrases)?_phrases:_phrases.Trim().Trim("\r\n".ToCharArray());
+            get => string.IsNullOrEmpty(_phrases) ? _phrases : _phrases.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _phrases = value;
@@ -294,7 +298,7 @@ namespace TranslationTool.ViewModels
         private string _synonyms;
         public string Synonyms
         {
-            get => string.IsNullOrEmpty(_synonyms)?_synonyms:_synonyms.Trim().Trim("\r\n".ToCharArray());
+            get => string.IsNullOrEmpty(_synonyms) ? _synonyms : _synonyms.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _synonyms = value;
@@ -304,7 +308,7 @@ namespace TranslationTool.ViewModels
         private string _translation;
         public string Translation
         {
-            get => string.IsNullOrEmpty(_translation)?_translation:_translation.Trim().Trim("\r\n".ToCharArray());
+            get => string.IsNullOrEmpty(_translation) ? _translation : _translation.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _translation = value;
@@ -315,7 +319,7 @@ namespace TranslationTool.ViewModels
         private string _cognates;
         public string Cognates
         {
-            get => string.IsNullOrEmpty(_cognates)?_cognates:_cognates.Trim().Trim("\r\n".ToCharArray());
+            get => string.IsNullOrEmpty(_cognates) ? _cognates : _cognates.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _cognates = value;
@@ -325,7 +329,7 @@ namespace TranslationTool.ViewModels
         private string _searchResultDetail;
         public string SearchResultDetail
         {
-            get =>  string.IsNullOrEmpty(_searchResultDetail)?_searchResultDetail:_searchResultDetail.Trim().Trim("\r\n".ToCharArray());
+            get => string.IsNullOrEmpty(_searchResultDetail) ? _searchResultDetail : _searchResultDetail.Trim().Trim("\r\n".ToCharArray());
             set
             {
                 _searchResultDetail = value;

@@ -113,9 +113,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlHelper.cs" />
-    <Compile Include="DbHelper\DbCache.cs" />
-    <Compile Include="DbHelper\EnglishWordDb.cs" />
-    <Compile Include="DbHelper\EnglishWordSqliteHelper.cs" />
     <Compile Include="EnglishWordExportService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -167,6 +164,10 @@
     <ProjectReference Include="..\TranslationService\Translation.Business.csproj">
       <Project>{8169403f-c635-4e71-a4dd-43e6e0287a54}</Project>
       <Name>Translation.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TranslationTool\TranslationTool.csproj">
+      <Project>{1F8619E7-1815-4FA4-9A6D-04E22A2D5593}</Project>
+      <Name>TranslationTool</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
