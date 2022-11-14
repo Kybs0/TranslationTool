@@ -90,10 +90,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomPathUtil.cs" />
     <Compile Include="DbHelper\DbCache.cs" />
     <Compile Include="DbHelper\EnglishWordDb.cs" />
     <Compile Include="DbHelper\EnglishWordSqliteHelper.cs" />
+    <Compile Include="LocalData\DbCache.cs" />
+    <Compile Include="LocalData\DBModel\EnglishWordDbData.cs" />
+    <Compile Include="LocalData\DBModel\EnglishWordDbModel.cs" />
+    <Compile Include="LocalData\DBModel\PhraseDbData.cs" />
+    <Compile Include="LocalData\DBModel\SematicDbData.cs" />
+    <Compile Include="LocalData\DBModel\SentenceDbData.cs" />
+    <Compile Include="LocalData\DBModel\SynonymDbData.cs" />
+    <Compile Include="LocalData\EnglishDictDB.cs" />
+    <Compile Include="LocalData\EnglishDictDbReader.cs" />
+    <Compile Include="LocalData\LocalWordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ConfigrationHelper.cs" />
     <Compile Include="Util\CustomPathUtil.cs" />

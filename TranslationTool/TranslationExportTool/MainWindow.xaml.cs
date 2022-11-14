@@ -7,8 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Translation.Api;
-using TranslationExportTool;
-using Translation.Util;
+using Translation.Business;
 using Translation.WebApi.KinsoftApi;
 using Translation.WebApi.YouDaoApi;
 using Path = System.IO.Path;
@@ -60,7 +59,7 @@ namespace TranslationExportTool
                     _englishWordSource.DeleteWord(wordInfo);
                     continue;
                 }
-                EnglishWordExportService.SaveWord(_englishWordSource, wordData);
+                await EnglishWordExportService.SaveWordAsync(_englishWordSource, wordData);
             }
             //List<string> specialChars=new List<string>(){ "，","）","（","；" };
             //var wordInfos = _englishWordSource.GetAllWords();

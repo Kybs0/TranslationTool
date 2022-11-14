@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using Translation.Util;
+using Translation.Business;
 using Application = System.Windows.Application;
 
 namespace TranslationTool

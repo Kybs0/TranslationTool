@@ -15,7 +15,6 @@ using Translation.WebApi.YouDaoApi;
 using TranslationExportTool;
 using TranslationTool.Annotations;
 using TranslationTool.Helper;
-using CustomPathUtil = Translation.Util.CustomPathUtil;
 
 namespace TranslationTool.ViewModels
 {
@@ -88,9 +87,10 @@ namespace TranslationTool.ViewModels
             if (!string.IsNullOrWhiteSpace(searchingText))
             {
                 var searchedData = await YouDaoUnOfficialWordApiService.GetWordsAsync(searchingText);
+                var localData = await LocalWordService.GetWordsAsync(searchingText);
                 if (string.IsNullOrEmpty(searchedData.Word))
                 {
-                    var wordInfo = await _englishWordSource.GetWordAsync(searchingText);
+                    searchedData = localData;
                 }
 
                 wordData.Word = searchedData.Word;
@@ -99,10 +99,10 @@ namespace TranslationTool.ViewModels
                 wordData.DetailJson = searchedData.DetailJson;
 
                 wordData.Translations = searchedData.Translations;
-                wordData.Phrases = searchedData.Phrases;
                 wordData.Sentences = searchedData.Sentences;
-                wordData.Synonyms = searchedData.Synonyms;
-                wordData.Cognates = searchedData.Cognates;
+                wordData.Phrases = searchedData.Phrases.Count > 0 ? searchedData.Phrases : localData.Phrases;
+                wordData.Synonyms = searchedData.Synonyms.Count>0? searchedData.Synonyms: localData.Synonyms;
+                wordData.Cognates = searchedData.Cognates.Count > 0 ? searchedData.Cognates : localData.Cognates;
             }
 
             SetSearchedWordData(wordData);

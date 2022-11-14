@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using Translation.Util;
+using Translation.Business;
 
 namespace TranslationTool
 {

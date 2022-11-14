@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Translation.Util
+namespace Translation.Business
 {
     public static class CustomPathUtil
     {

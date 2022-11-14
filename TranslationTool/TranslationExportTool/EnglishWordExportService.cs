@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Translation.Api;
 using Translation.Business;
-using TranslationExportTool;
-using CustomPathUtil = Translation.Util.CustomPathUtil;
 
 namespace TranslationExportTool
 {
@@ -153,13 +151,13 @@ namespace TranslationExportTool
             return sentenceSaveInfos;
         }
 
-        public static void SaveWord(EnglishWordSqliteHelper englishWordDbHleper, EnglishWordTranslationData wordData)
+        public static async Task SaveWordAsync(EnglishWordSqliteHelper englishWordDbHleper, EnglishWordTranslationData wordData)
         {
             if (string.IsNullOrEmpty(wordData.Word))
             {
                 return;
             }
-            var previousWord = englishWordDbHleper.GetWord(wordData.Word);
+            var previousWord =await englishWordDbHleper.GetWordAsync(wordData.Word);
 
             WordInfo newWord = new WordInfo();
             newWord.Word = wordData.Word;
