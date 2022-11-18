@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translation.Api", "Translat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translation.WebApi", "Translation.WebApi\Translation.WebApi.csproj", "{6DB43E4C-D4C2-48B1-8A85-5ED9A72008EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationExportTool", "TranslationExportTool\TranslationExportTool.csproj", "{4921EC39-B1B3-403B-B953-670FC28369D6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,18 +78,6 @@ Global
 		{6DB43E4C-D4C2-48B1-8A85-5ED9A72008EA}.Release|x64.Build.0 = Release|x64
 		{6DB43E4C-D4C2-48B1-8A85-5ED9A72008EA}.Release|x86.ActiveCfg = Release|x86
 		{6DB43E4C-D4C2-48B1-8A85-5ED9A72008EA}.Release|x86.Build.0 = Release|x86
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|x64.ActiveCfg = Debug|x64
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|x64.Build.0 = Debug|x64
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Debug|x86.Build.0 = Debug|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|x64.ActiveCfg = Release|x64
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|x64.Build.0 = Release|x64
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|x86.ActiveCfg = Release|Any CPU
-		{4921EC39-B1B3-403B-B953-670FC28369D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
