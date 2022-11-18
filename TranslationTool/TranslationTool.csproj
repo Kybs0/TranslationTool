@@ -240,7 +240,7 @@
       <Project>{6DB43E4C-D4C2-48B1-8A85-5ED9A72008EA}</Project>
       <Name>Translation.WebApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TranslationService\Translation.Business.csproj">
+    <ProjectReference Include="..\TranslationTool.Bussiness\Translation.Business.csproj">
       <Project>{8169403f-c635-4e71-a4dd-43e6e0287a54}</Project>
       <Name>Translation.Business</Name>
     </ProjectReference>
